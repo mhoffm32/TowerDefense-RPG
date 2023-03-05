@@ -1,5 +1,7 @@
 import Weapon
 
 class Ballista(Weapon):
-    def __init__(self):
-    	print("initialize Ballista")
+    def __init__(self,x,y):
+        img_path = ''
+
+        super().__init__(x,y,img_path)
