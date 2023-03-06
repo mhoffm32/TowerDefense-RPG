@@ -1,15 +1,23 @@
-import ExplorationMode.Level as Level
+from ExplorationMode.Level import Level
 import TowerDefenseMode.Exterior as Exterior
+import pygame
 
-class World:
-    def __init__(self):
-        print("World Created")
-        self.level = Level()
-        self.exterior = Exterior()
-        self.progressBar = 0
-        self.combatTimer = 0
+pygame.init()
 
-    def update(self):
-        print("Updating World")
-        #update everything here
+screen = pygame.display.set_mode((800,600))
+screenRectangle = screen.get_rect()
 
+level = Level(screen)
+
+running = True
+while(running):
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    level.update()
+    pygame.display.flip()
+    screen.fill((0,0,0))
+
+pygame.quit()
