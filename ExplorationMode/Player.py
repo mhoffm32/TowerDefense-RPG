@@ -8,7 +8,6 @@ import pygame
 
 class Player(Character):
     def __init__(self,name,gender,hair_color, screen, room):
-        print("Initialize Player")
         super().__init__(500,500,'Images\\boy\\boy_mannequin_forward_idle.png')
 
         self.image = pygame.transform.scale(self.image, (100,100))
@@ -30,29 +29,29 @@ class Player(Character):
     def update(self):
         self.move()
 
+    def setPosition(self, pos):
+        self.rect.x = pos[0]
+        self.rect.y = pos[1]
+
     def move(self):
         # loading sprite images to change depending on character movement
 
         # move the player
         keysPressed = pygame.key.get_pressed()
         if(keysPressed[pygame.K_LEFT]):
-            print("Move Left")
             self.rect.x -= self.speed
 
             self.image = self.sideSprite
             self.image = pygame.transform.flip(self.image,True,False)
         if(keysPressed[pygame.K_RIGHT]):
-            print("Move Right")
             self.rect.x += self.speed
 
             self.image = self.sideSprite
         if(keysPressed[pygame.K_UP]):
-            print("Move UP")
             self.rect.y -= self.speed
 
             self.image = self.upSprite
         if(keysPressed[pygame.K_DOWN]):
-            print("Move Down")
             self.rect.y += self.speed
 
             self.image = self.downSprite
@@ -60,16 +59,12 @@ class Player(Character):
         # if the result of the move puts the player in a wall: revert movement
         if self.room.checkCollision(self):
             if(keysPressed[pygame.K_LEFT]):
-                print("Move Left")
                 self.rect.x += self.speed
             if(keysPressed[pygame.K_RIGHT]):
-                print("Move Right")
                 self.rect.x -= self.speed
             if(keysPressed[pygame.K_UP]):
-                print("Move UP")
                 self.rect.y += self.speed
             if(keysPressed[pygame.K_DOWN]):
-                print("Move Down")
                 self.rect.y -= self.speed
 
         
