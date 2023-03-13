@@ -4,10 +4,11 @@ import pygame
 
 pygame.init()
 
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((1100, 800))
 screenRectangle = screen.get_rect()
 
 level = Level(screen)
+
 
 running = True
 while(running):
@@ -18,6 +19,6 @@ while(running):
 
     level.update()
     pygame.display.flip()
-    screen.fill((0,0,0))
+    screen.fill((0, 0, 0))
 
 pygame.quit()
