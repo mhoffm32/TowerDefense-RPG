@@ -11,7 +11,7 @@ class Player(Character):
         print("Initialize Player")
         super().__init__(500,500,'Images\\boy\\boy_mannequin_forward_idle.png')
 
-        self.image = pygame.transform.scale(self.image, (100,100))
+        self.image = pygame.transform.scale(self.image, (100,125))
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = 300
@@ -19,9 +19,9 @@ class Player(Character):
         self.sideSprite = pygame.image.load('Images\\boy\\boy_mannequin_side_idle.png')
         self.downSprite = pygame.image.load('Images\\boy\\boy_mannequin_forward_idle.png')
         self.upSprite = pygame.image.load('Images\\boy\\boy_mannequin_back_idle.png')
-        self.sideSprite = pygame.transform.scale(self.sideSprite, (100,100))
-        self.downSprite = pygame.transform.scale(self.downSprite, (100,100))
-        self.upSprite = pygame.transform.scale(self.upSprite, (100,100))
+        self.sideSprite = pygame.transform.scale(self.sideSprite, (100,125))
+        self.downSprite = pygame.transform.scale(self.downSprite, (100,125))
+        self.upSprite = pygame.transform.scale(self.upSprite, (100,125))
 
         self.speed = 1
         self.screen = screen
