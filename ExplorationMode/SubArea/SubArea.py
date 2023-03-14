@@ -26,19 +26,19 @@ class SubArea:
         self.wallGroup.empty()
         self.doorGroup.empty()
         if roomNumber == 0:
-            self.wallGroup.add(Wall(400,15,800,30, 'Images/Wall800x30.PNG'))
-            self.wallGroup.add(Wall(15,300,30,600, 'Images/Wall800x30.PNG'))
-            self.wallGroup.add(Wall(785,300,30,600, 'Images/Wall800x30.PNG'))
-            self.wallGroup.add(Wall(400, 585, 800,30, 'Images/Wall800x30.PNG'))
+            self.wallGroup.add(Wall(400,15,800,30, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(15,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(785,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(400, 585, 800,30, 'Images\mapObjects\walls\800x30_wall.png'))
 
             self.doorGroup.add(Door(350,0,'Images/mapObjects/door_sprite.png', 1, [400,350]))
         if roomNumber == 1:
-            self.wallGroup.add(Wall(400,15,800,30, 'Images/Wall800x30.PNG'))
-            self.wallGroup.add(Wall(15,300,30,600, 'Images/Wall800x30.PNG'))
-            self.wallGroup.add(Wall(785,300,30,600, 'Images/Wall800x30.PNG'))
-            self.wallGroup.add(Wall(400, 585, 800,30, 'Images/Wall800x30.PNG'))
+            self.wallGroup.add(Wall(400,15,800,30, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(15,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(785,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(400, 585, 800,30, 'Images\mapObjects\walls\800x30_wall.png'))
 
-            self.wallGroup.add(Wall(800, 300, 800,30, 'Images/Wall800x30.PNG'))
+            self.wallGroup.add(Wall(800, 300, 800,30, 'Images\mapObjects\walls\800x30_wall.png'))
 
             self.doorGroup.add(Door(350,550,'Images/mapObjects/door_sprite.png', 0, [400,110]))
 
