@@ -15,6 +15,7 @@ surface.fill((70, 9, 2))
 pBar_group = pygame.sprite.Group([ProgressBar.ProgressBar(surface)])
 
 
+# just to test what its like to pause with a moving background
 myRect = pygame.Rect(300, 400, 300, 300)
 
 

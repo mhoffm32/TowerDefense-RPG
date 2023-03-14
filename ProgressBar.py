@@ -22,7 +22,8 @@ class ProgressBar(pygame.sprite.Sprite):
         self.timePaused = 0
         self.msgIndex = 0
 
-        self.font = pygame.font.Font('Fonts/Enchanted Land.otf', 28)
+        self.font = pygame.font.Font(
+            'ExplorationMode/Font/Enchanted Land.otf', 28)
         self.attackMode = False
 
         #diamond_img = pygame.image.load('Images/Diamond.png')
