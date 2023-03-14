@@ -18,7 +18,9 @@ class ProgressBar(pygame.sprite.Sprite):
         self.messageRequest = False
         self.messageCount = 0
         self.LevelUp = False
+        self.paused = False
 
+        self.timePaused = 0
         self.msgIndex = 0
 
         self.font = pygame.font.Font('Fonts/Enchanted Land.otf', 28)
@@ -79,6 +81,7 @@ class ProgressBar(pygame.sprite.Sprite):
         if self.levelPoints >= 100:
             self.level += 1
             self.levelPoints = 0
+            self.setMessage(["level up"])
             fillRect.width = 0
 
         pygame.draw.rect(self.surface, (184, 24, 27),
@@ -118,7 +121,8 @@ class ProgressBar(pygame.sprite.Sprite):
                            self.clock_images[self.clockImg_index].get_width() - 5, 25)
         self.surface.blit(text, textRect)
 
-    def popUpMessage(self):  # texts is an array
+    def popUpMessage(self):
+        self.paused = True  # texts is an array
         width = 500
         height = 300
         x = self.surface.get_width()/2 - width/2
@@ -147,9 +151,23 @@ class ProgressBar(pygame.sprite.Sprite):
                 self.msgIndex = 0
                 self.messageCount = 0
                 self.messageRequest = False
+                self.paused = False
                 return False
         else:
             return False
+
+    def updateTime(self):
+        elapsedTime = pygame.time.get_ticks()/1000
+        if not self.paused:
+            self.timeRemaining = self.seconds - elapsedTime + self.timePaused
+            self.deltaT = self.seconds-self.timeRemaining
+            self.prevTime = self.timeRemaining
+        else:
+            self.timePaused = elapsedTime - self.deltaT
+            self.timeRemaining = self.prevTime
+
+        if self.timeRemaining < 0:
+            self.attackMode = True
 
     def update(self, events):
 
@@ -160,13 +178,8 @@ class ProgressBar(pygame.sprite.Sprite):
                     if event.key == pygame.K_SPACE:
                         self.popUpMessage()
                         self.msgIndex += 1
-        else:
-            self.surface.fill((70, 9, 2))
 
-        self.timeRemaining = self.seconds - pygame.time.get_ticks()/1000
-
-        if self.timeRemaining < 0:
-            self.attackMode = True
+        self.updateTime()
 
         pygame.draw.rect(self.surface, pygame.Color((138, 103, 76)), self.rect)
         pygame.draw.rect(self.surface, pygame.Color(
@@ -174,8 +187,8 @@ class ProgressBar(pygame.sprite.Sprite):
 
         pygame.draw.rect(self.surface, (247, 228, 210),
                          self.levelProgress_rect)
-        self.updateLevelProgress_Text()
         self.add_xp()
+        self.updateLevelProgress_Text()
         pygame.draw.rect(self.surface, (0, 0, 0),
                          self.levelProgress_rect, width=2)
 

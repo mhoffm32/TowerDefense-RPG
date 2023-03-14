@@ -15,6 +15,15 @@ surface.fill((70, 9, 2))
 pBar_group = pygame.sprite.Group([ProgressBar.ProgressBar(surface)])
 
 
+myRect = pygame.Rect(300, 400, 300, 300)
+
+
+def homeUpdate():
+    surface.fill((70, 9, 2))
+    pygame.draw.rect(surface, (110, 74, 11), myRect)
+    myRect.move_ip(1, 0)
+
+
 def render(events):
     pBar_group.update(events)
 
@@ -22,21 +31,36 @@ def render(events):
     pygame.display.update()
 
 
+state = 1  # paused is 0
+
 running = True
 
 while running:
 
     events = pygame.event.get()
 
+    for p in pBar_group:
+        if p.paused:
+            state = 0
+        else:
+            state = 1
+
     for event in events:
         if event.type == pygame.QUIT:
             running = False
 
-        if event.type == pygame.KEYDOWN:
-            for p in pBar_group:
-                p.add_xp(5)
+    if state == 1:
+        for event in events:
+            if event.type == pygame.KEYDOWN:
+                for p in pBar_group:
+                    p.add_xp(5)
 
-    render(events)
+        render(events)
+        homeUpdate()
+
+    if state == 0:
+        render(events)
+
     time.sleep(0.05)
 
 
