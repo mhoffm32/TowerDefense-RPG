@@ -57,7 +57,7 @@ class Player(Character):
             self.image = self.downSprite
 
         # if the result of the move puts the player in a wall: revert movement
-        if self.room.checkCollision(self):
+        if self.room.checkCollision():
             if(keysPressed[pygame.K_LEFT]):
                 self.rect.x += self.speed
             if(keysPressed[pygame.K_RIGHT]):

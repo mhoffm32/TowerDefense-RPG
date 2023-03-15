@@ -42,19 +42,17 @@ class SubArea:
 
             self.doorGroup.add(Door(350,550,'Images/mapObjects/door_sprite.png', 0, [400,110]))
 
-    def checkCollision(self, player):
-        playerGroup = pygame.sprite.Group()
-        playerGroup.add(player)
+    def checkCollision(self):
 
         #Check Collision with Door
-        doorCollisionDictionary = pygame.sprite.groupcollide(self.doorGroup, playerGroup, False, False)
+        doorCollisionDictionary = pygame.sprite.groupcollide(self.doorGroup, self.playerGroup, False, False)
         for door in doorCollisionDictionary:
             self.generateRoom(door.nextLevelNumber)
             self.player.setPosition(door.newRoomSpawnLocation)
             break
 
         #Check Collision with Wall
-        wallCollisionDictionary = pygame.sprite.groupcollide(playerGroup, self.wallGroup, False, False)
+        wallCollisionDictionary = pygame.sprite.groupcollide(self.playerGroup, self.wallGroup, False, False)
         if len(wallCollisionDictionary) > 0:
             return True
 
