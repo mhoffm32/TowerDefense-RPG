@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append('../se2250groupproject')
+sys.path.append('../groupproject-team-99')
 
 from Character import Character
 
