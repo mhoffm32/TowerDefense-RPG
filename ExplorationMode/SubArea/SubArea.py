@@ -12,7 +12,7 @@ class SubArea:
         self.screen = screen
 
         self.playerGroup = pygame.sprite.Group()
-        self.player = Player(0,0,0,screen, self)
+        self.player = Player(0,0,0,0,screen, self)
         self.playerGroup.add(self.player)
 
     def update(self):
