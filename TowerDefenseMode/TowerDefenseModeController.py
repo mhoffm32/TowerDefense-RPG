@@ -12,6 +12,8 @@ class TowerDefenseModeController:
         self.screen = screen
         self.towerGroup = pygame.sprite.Group()
         self.enemyGroup = pygame.sprite.Group()
+        self.tower = Tower(self.screen)
+        self.towerGroup.add(self.tower)
         self.generateWave(0)
 
     def update(self):
@@ -19,21 +21,21 @@ class TowerDefenseModeController:
         self.enemyGroup.draw(self.screen)
 
         self.enemyGroup.update()
+        self.towerGroup.update()
 
     def generateWave(self, waveNumber):
         print("Generate Wave #" + str(waveNumber))
-        self.towerGroup.add(Tower())
         for i in range(0,waveNumber + 2):
             #self.enemyGroup.add(Enemy1(i*100,250,'Images/wall30x600.PNG'))
             sector = random.randint(0,3)
             if sector == 0:  #sector zero will be the top of the screen
-                self.enemyGroup.add(Enemy1(random.randint(20,780),20,'Images/wall30x600.PNG'))
+                self.enemyGroup.add(Enemy1(random.randint(20,780),20,'Images/wall30x600.PNG',self.tower))
 
             elif sector == 1:  #sector zero will be the right of the screen
-                self.enemyGroup.add(Enemy1(780,random.randint(20,580),'Images/wall30x600.PNG'))
+                self.enemyGroup.add(Enemy1(780,random.randint(20,580),'Images/wall30x600.PNG',self.tower))
 
             elif sector == 2:  #sector zero will be the bottom of the screen
-                self.enemyGroup.add(Enemy1(random.randint(20,780),580,'Images/wall30x600.PNG'))
+                self.enemyGroup.add(Enemy1(random.randint(20,780),580,'Images/wall30x600.PNG',self.tower))
 
             else:  #sector 3 will be the left of the screen
-                self.enemyGroup.add(Enemy1(20,random.randint(20,580),'Images/wall30x600.PNG'))
+                self.enemyGroup.add(Enemy1(20,random.randint(20,580),'Images/wall30x600.PNG',self.tower))

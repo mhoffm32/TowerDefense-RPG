@@ -5,7 +5,7 @@ import pygame
 
 
 class Enemy(Character):
-    def __init__(self, x, y, img_path):
+    def __init__(self, x, y, img_path, tower):
         # initialize other enemy specific attributes
         super().__init__(x, y, img_path)
         self.image = pygame.transform.scale(self.image, (20,20))
@@ -16,9 +16,13 @@ class Enemy(Character):
         self.speed = .05                        #Should be overwritten in Child Class
         self.xPos = x
         self.yPos = y
+        self.reachedTower = False
+        self.tower = tower
+        self.damage = .01
 
     def update(self):
         self.move()
+        self.attack()
 
     def getDirection(self):
         print("Get Enemey Direction")
@@ -33,9 +37,15 @@ class Enemy(Character):
         #there obviously can't be any partial pixels. Therefore we create a new variable which CAN hold floats
         #this way we can reduce the speed to less than a pixel a second
 
-        self.xPos = self.xPos + (self.direction[0] * self.speed)
-        self.yPos = self.yPos + (self.direction[1] * self.speed)
-        self.rect.x = self.xPos
-        self.rect.y = self.yPos
+        if not self.reachedTower:
+            self.xPos = self.xPos + (self.direction[0] * self.speed)
+            self.yPos = self.yPos + (self.direction[1] * self.speed)
+            self.rect.x = self.xPos
+            self.rect.y = self.yPos
 
+        self.reachedTower = pygame.sprite.collide_rect(self, self.tower)
+
+    def attack(self):
+        if self.reachedTower:
+            self.tower.inflictDamage(self.damage)
 
