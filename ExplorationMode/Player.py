@@ -82,13 +82,11 @@ class Player(Character):
                 self.rect.y -= self.speed
 
     def update_skin(self,skin_colour):
-        self.image = self.image.copy()
         self.skin_colour_images[skin_colour] = pygame.transform.scale(self.skin_colour_images[skin_colour], (self.rect.width,self.rect.height))
         self.image.blit(self.skin_colour_images[skin_colour], (0,0))
         self.image = pygame.transform.scale(self.image, (self.rect.width,self.rect.height))
 
     def update_hair(self,hair_colour):
-        self.image = self.image.copy()
         self.hair_colour_images[hair_colour] = pygame.transform.scale(self.hair_colour_images[hair_colour],(self.rect.width,self.rect.height))
         self.image.blit(self.hair_colour_images[hair_colour],(0,0))
         self.image = pygame.transform.scale(self.image, (self.rect.width,self.rect.height))

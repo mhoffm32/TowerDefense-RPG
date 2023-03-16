@@ -26,21 +26,22 @@ class SubArea:
         self.wallGroup.empty()
         self.doorGroup.empty()
         if roomNumber == 0:
-            self.wallGroup.add(Wall(400,15,800,30, 'Images\mapObjects\walls\800x30_wall.png'))
-            self.wallGroup.add(Wall(15,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
-            self.wallGroup.add(Wall(785,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
-            self.wallGroup.add(Wall(400, 585, 800,30, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(15,450,35,700, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(985,450,35,700, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(500,100,1000,38, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(500, 685, 1000,38, 'Images\mapObjects\walls\800x30_wall.png'))
+            
 
-            self.doorGroup.add(Door(350,0,'Images/mapObjects/door_sprite.png', 1, [400,350]))
+            self.doorGroup.add(Door(350,85,'Images/mapObjects/door_sprite.png', 1, [500,500]))
         if roomNumber == 1:
-            self.wallGroup.add(Wall(400,15,800,30, 'Images\mapObjects\walls\800x30_wall.png'))
-            self.wallGroup.add(Wall(15,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
-            self.wallGroup.add(Wall(785,300,30,600, 'Images\mapObjects\walls\800x30_wall.png'))
-            self.wallGroup.add(Wall(400, 585, 800,30, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(15,450,35,700, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(985,450,35,700, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(500,100,1000,38, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(500, 685, 1000,38, 'Images\mapObjects\walls\800x30_wall.png'))
 
-            self.wallGroup.add(Wall(800, 300, 800,30, 'Images\mapObjects\walls\800x30_wall.png'))
+            self.wallGroup.add(Wall(800, 300, 1000,38, 'Images\mapObjects\walls\800x30_wall.png'))
 
-            self.doorGroup.add(Door(350,550,'Images/mapObjects/door_sprite.png', 0, [400,110]))
+            self.doorGroup.add(Door(350,660,'Images/mapObjects/door_sprite.png', 0, [500,200]))
 
     def checkCollision(self, player):
         playerGroup = pygame.sprite.Group()
