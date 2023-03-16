@@ -7,7 +7,7 @@ from Character import Character
 import pygame
 
 class Player(Character):
-    def __init__(self,name,gender,hair_color, screen, room):
+    def __init__(self,name,gender,skin_colour,hair_colour, screen, room):
         super().__init__(500,500,'Images\\boy\\boy_mannequin_forward_idle.png')
 
         self.image = pygame.transform.scale(self.image, (50,70))
@@ -25,6 +25,20 @@ class Player(Character):
         self.speed = 1
         self.screen = screen
         self.room = room
+
+        self.gender = gender
+
+        self.skin_colour_images = {
+            'light': pygame.image.load('Images\\boy\\skin\\forward\\boy_light_skin_forward.png').convert_alpha(),
+            'medium': pygame.image.load('Images\\boy\\skin\\forward\\boy_medium_skin_forward.png').convert_alpha(),
+            'dark': pygame.image.load('Images\\boy\\skin\\forward\\boy_dark_skin_forward.png').convert_alpha()
+        }
+        self.hair_colour_images = {
+            'blonde': pygame.image.load('Images\\boy\hair\\forward\\boy_blonde_hair_forward.png').convert_alpha(),
+            'brown': pygame.image.load('Images\\boy\hair\\forward\\boy_brown_hair_forward.png').convert_alpha(),
+            'black': pygame.image.load('Images\\boy\hair\\forward\\boy_black_hair_forward.png').convert_alpha()
+        }
+    
 
     def update(self):
         self.move()
@@ -67,7 +81,17 @@ class Player(Character):
             if(keysPressed[pygame.K_DOWN]):
                 self.rect.y -= self.speed
 
-        
+    def update_skin(self,skin_colour):
+        self.image = self.image.copy()
+        self.skin_colour_images[skin_colour] = pygame.transform.scale(self.skin_colour_images[skin_colour], (self.rect.width,self.rect.height))
+        self.image.blit(self.skin_colour_images[skin_colour], (0,0))
+        self.image = pygame.transform.scale(self.image, (self.rect.width,self.rect.height))
+
+    def update_hair(self,hair_colour):
+        self.image = self.image.copy()
+        self.hair_colour_images[hair_colour] = pygame.transform.scale(self.hair_colour_images[hair_colour],(self.rect.width,self.rect.height))
+        self.image.blit(self.hair_colour_images[hair_colour],(0,0))
+        self.image = pygame.transform.scale(self.image, (self.rect.width,self.rect.height))
 
     #here we can add customizable features with different img urls for 
     #different characters depending on gender, hair color, etc'''

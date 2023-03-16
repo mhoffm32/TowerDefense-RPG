@@ -14,7 +14,7 @@ level = Level(screen)
 # please recomment them after so that people can test without having the introduction in the way.
 """
 pygame.display.set_caption("Intro Cutscene")
-font = pygame.font.SysFont('ExplorationMode\Font\Minecraft.ttf',30)
+font = pygame.font.SysFont('Times',30)
 text_boxes = [
     "Welcome to The Immortal Garden.",
     "You are the King/Queen of this kingdom. Your job is to protect the Tree of Immortality from the enemy army!",
