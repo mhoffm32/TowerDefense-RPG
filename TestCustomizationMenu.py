@@ -62,6 +62,14 @@ pygame.draw.rect(screen, '#c0a648', blonde_hair)
 pygame.draw.rect(screen, '#7f580e', brown_hair)
 pygame.draw.rect(screen, '#0f0b02', black_hair)
 
+button_surface = font.render("Finish",True,(255,255,255))
+button_rect = button_surface.get_rect()
+button_rect.x = 700
+button_rect.y = 700
+    
+screen.blit(button_surface,button_rect)
+pygame.display.update()
+
 male = True
 
 # Main game loop
