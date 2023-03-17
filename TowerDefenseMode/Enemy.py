@@ -2,6 +2,7 @@ import math
 import time
 from Character import Character
 import pygame
+import threading
 
 
 class Enemy(Character):
@@ -18,7 +19,9 @@ class Enemy(Character):
         self.yPos = y
         self.reachedTower = False
         self.tower = tower
-        self.damage = .01
+        self.damage = 10
+        self.attackSpeed = 2                    #in Seconds
+        self.lastAttackTime = time.time()
 
     def update(self):
         self.move()
@@ -46,6 +49,9 @@ class Enemy(Character):
         self.reachedTower = pygame.sprite.collide_rect(self, self.tower)
 
     def attack(self):
-        if self.reachedTower:
+
+        if self.reachedTower and (int(time.time()*1000 - self.lastAttackTime)%(self.attackSpeed*1000) == 0):
             self.tower.inflictDamage(self.damage)
+            print(int(time.time() - self.lastAttackTime)%self.attackSpeed)
+            self.lastAttackTime = time.time()*1000
 
