@@ -7,7 +7,7 @@ from Character import Character
 import pygame
 
 class Player(Character):
-    def __init__(self,name,gender,skin_colour,hair_colour, screen, room):
+    def __init__(self,name,gender,skin_colour,hair_colour, screen, room, progressBar):
         super().__init__(500,500,'Images\\boy\\boy_mannequin_forward_idle.png')
 
         self.image = pygame.transform.scale(self.image, (50,70))
@@ -25,6 +25,7 @@ class Player(Character):
         self.speed = 1
         self.screen = screen
         self.room = room
+        self.progressBar = progressBar
 
         self.gender = gender
 
@@ -90,6 +91,10 @@ class Player(Character):
         self.hair_colour_images[hair_colour] = pygame.transform.scale(self.hair_colour_images[hair_colour],(self.rect.width,self.rect.height))
         self.image.blit(self.hair_colour_images[hair_colour],(0,0))
         self.image = pygame.transform.scale(self.image, (self.rect.width,self.rect.height))
+
+    def collectItem(self, item):
+        self.progressBar.add_coin(item.moneyValue)
+        self.progressBar.add_diamond(item.crystalValue)
 
     #here we can add customizable features with different img urls for 
     #different characters depending on gender, hair color, etc'''
