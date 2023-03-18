@@ -84,8 +84,13 @@ class SubArea:
         if len(wallCollisionDictionary) > 0:
             return True
         
+
+    def get_player(self):
+        return self.player
+
     def generateItems(self):
         self.itemGroup.add(Item(100, 0,0, 900,200,1, 'Images/coin.png'))
         self.itemGroup.add(Item(0, 1,0, 900,600,1, 'Images/Diamond.png'))
         self.itemGroup.add(Item(100, 0,0, 900,600,0, 'Images/coin.png'))
+
 
