@@ -10,7 +10,7 @@ bg_color = ('#639c7a')
 screen.fill(bg_color)
 
 playerGroup = pygame.sprite.Group()
-player = Player('','male','','',screen,0)
+player = Player('','male','','',screen,0,'')
 player.rect.left = 80
 player.rect.top = 50
 player.rect.height = 360
@@ -131,4 +131,4 @@ while running:
     pygame.display.flip()
 
 # Quit Pygame
-pygame.quit()
+pygame.quit()   
