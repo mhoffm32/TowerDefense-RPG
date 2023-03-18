@@ -8,14 +8,14 @@ import pygame
 
 class Player(Character):
     def __init__(self,name,gender,skin_colour,hair_colour, screen, room, progressBar):
-        super().__init__(500,500,'Images\\boy\\boy_mannequin_forward_idle.png')
+        super().__init__(500,500,'Images/boy/boy_mannequin_forward_idle.png')
         
         self.image = pygame.transform.scale(self.image, (50,70))
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = 300
 
-        self.girlSprite = pygame.image.load('Images\\girl\\girl_mannequin_forward.png')
+        self.girlSprite = pygame.image.load('Images/girl/girl_mannequin_forward.png')
         self.girlSprite = pygame.transform.scale(self.girlSprite, (50,70))
 
         self.gender = gender
@@ -28,9 +28,9 @@ class Player(Character):
         self.upSprite = pygame.transform.scale(self.upSprite, (50,70))
 
         if self.gender == 'female':
-            self.sideSprite = pygame.image.load('Images\\boy\\boy_mannequin_side_idle.png')
-            self.downSprite = pygame.image.load('Images\\girl\\girl_mannequin_forward.png')
-            self.upSprite = pygame.image.load('Images\\boy\\boy_mannequin_back_idle.png')
+            self.sideSprite = pygame.image.load('Images/boy/boy_mannequin_side_idle.png')
+            self.downSprite = pygame.image.load('Images/girl/girl_mannequin_forward.png')
+            self.upSprite = pygame.image.load('Images/boy/boy_mannequin_back_idle.png')
             self.sideSprite = pygame.transform.scale(self.sideSprite, (50,70))
             self.downSprite = pygame.transform.scale(self.downSprite, (50,70))
             self.upSprite = pygame.transform.scale(self.upSprite, (50,70))
@@ -41,24 +41,24 @@ class Player(Character):
         self.progressBar = progressBar
 
         self.male_skin_colour_images = {
-            'light': pygame.image.load('Images\\boy\\skin\\forward\\boy_light_skin_forward.png').convert_alpha(),
-            'medium': pygame.image.load('Images\\boy\\skin\\forward\\boy_medium_skin_forward.png').convert_alpha(),
-            'dark': pygame.image.load('Images\\boy\\skin\\forward\\boy_dark_skin_forward.png').convert_alpha()
+            'light': pygame.image.load('Images/boy/skin/forward/boy_light_skin_forward.png').convert_alpha(),
+            'medium': pygame.image.load('Images/boy/skin/forward/boy_medium_skin_forward.png').convert_alpha(),
+            'dark': pygame.image.load('Images/boy/skin/forward/boy_dark_skin_forward.png').convert_alpha()
         }
         self.male_hair_colour_images = {
-            'blonde': pygame.image.load('Images\\boy\hair\\forward\\boy_blonde_hair_forward.png').convert_alpha(),
-            'brown': pygame.image.load('Images\\boy\hair\\forward\\boy_brown_hair_forward.png').convert_alpha(),
-            'black': pygame.image.load('Images\\boy\hair\\forward\\boy_black_hair_forward.png').convert_alpha()
+            'blonde': pygame.image.load('Images/boy/hair/forward/boy_blonde_hair_forward.png').convert_alpha(),
+            'brown': pygame.image.load('Images/boy/hair/forward/boy_brown_hair_forward.png').convert_alpha(),
+            'black': pygame.image.load('Images/boy/hair/forward/boy_black_hair_forward.png').convert_alpha()
         }
         self.female_skin_colour_images = {
-            'light': pygame.image.load('Images\girl\skin\\forward\girl_light_skin_forward.png').convert_alpha(),
-            'medium': pygame.image.load('Images\girl\skin\\forward\girl_medium_skin_forward.png').convert_alpha(),
-            'dark': pygame.image.load('Images\girl\skin\\forward\girl_dark_skin_forward.png').convert_alpha()
+            'light': pygame.image.load('Images/girl/skin/forward/girl_light_skin_forward.png').convert_alpha(),
+            'medium': pygame.image.load('Images/girl/skin/forward/girl_medium_skin_forward.png').convert_alpha(),
+            'dark': pygame.image.load('Images/girl/skin/forward/girl_dark_skin_forward.png').convert_alpha()
         }
         self.female_hair_colour_images = {
-            'blonde': pygame.image.load('Images\girl\hair\\forward\girl_blonde_hair_forward.png').convert_alpha(),
-            'brown': pygame.image.load('Images\girl\hair\\forward\girl_brown_hair_forward.png').convert_alpha(),
-            'black': pygame.image.load('Images\girl\hair\\forward\girl_black_hair_forward.png').convert_alpha()
+            'blonde': pygame.image.load('Images/girl/hair/forward/girl_blonde_hair_forward.png').convert_alpha(),
+            'brown': pygame.image.load('Images/girl/hair/forward/girl_brown_hair_forward.png').convert_alpha(),
+            'black': pygame.image.load('Images/girl/hair/forward/girl_black_hair_forward.png').convert_alpha()
         }
 
     def update(self):
@@ -101,8 +101,8 @@ class Player(Character):
                 self.rect.y -= self.speed
        
     def customize(self, gender, hair_colour, skin_colour):
-        self.boySprite = pygame.image.load('Images\\boy\\boy_mannequin_forward_idle.png')
-        self.girlSprite = pygame.image.load('Images\\girl\\girl_mannequin_forward.png')
+        self.boySprite = pygame.image.load('Images/boy/boy_mannequin_forward_idle.png')
+        self.girlSprite = pygame.image.load('Images/girl/girl_mannequin_forward.png')
         
         if gender == 'male':
             self.image = pygame.transform.scale(self.boySprite, (self.rect.width, self.rect.height))
