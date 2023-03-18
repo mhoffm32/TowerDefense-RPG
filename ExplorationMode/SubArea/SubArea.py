@@ -58,4 +58,7 @@ class SubArea:
         wallCollisionDictionary = pygame.sprite.groupcollide(playerGroup, self.wallGroup, False, False)
         if len(wallCollisionDictionary) > 0:
             return True
+        
+    def get_player(self):
+        return self.player
 
