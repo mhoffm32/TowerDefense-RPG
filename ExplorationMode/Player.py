@@ -1,14 +1,15 @@
 import sys
-sys.path.append('../se2250groupproject')
+
+sys.path.append('../groupproject-team-99')
 
 from Character import Character
 
 import pygame
 
 class Player(Character):
-    def __init__(self,name,gender,skin_colour,hair_colour, screen, room):
-        super().__init__(500,500,'Images/boy/boy_mannequin_forward_idle.png')
-
+    def __init__(self,name,gender,skin_colour,hair_colour, screen, room, progressBar):
+        super().__init__(500,500,'Images\\boy\\boy_mannequin_forward_idle.png')
+        
         self.image = pygame.transform.scale(self.image, (50,70))
         self.rect = self.image.get_rect()
         self.rect.x = 400
@@ -37,6 +38,7 @@ class Player(Character):
         self.speed = 1
         self.screen = screen
         self.room = room
+        self.progressBar = progressBar
 
         self.male_skin_colour_images = {
             'light': pygame.image.load('Images\\boy\\skin\\forward\\boy_light_skin_forward.png').convert_alpha(),
@@ -88,7 +90,7 @@ class Player(Character):
             self.image = self.downSprite
 
         # if the result of the move puts the player in a wall: revert movement
-        if self.room.checkCollision(self):
+        if self.room.checkCollision():
             if(keysPressed[pygame.K_LEFT]):
                 self.rect.x += self.speed
             if(keysPressed[pygame.K_RIGHT]):
@@ -116,6 +118,10 @@ class Player(Character):
             self.female_hair_colour_images[hair_colour] = pygame.transform.scale(self.female_hair_colour_images[hair_colour], (self.rect.width, self.rect.height))
             self.image.blit(self.female_hair_colour_images[hair_colour], (0, 0))
             
+    def collectItem(self, item):
+        self.progressBar.add_coin(item.moneyValue)
+        self.progressBar.add_diamond(item.crystalValue)
+
     #here we can add customizable features with different img urls for 
     #different characters depending on gender, hair color, etc'''
     #'''customizable name that we can use throughout the game'''

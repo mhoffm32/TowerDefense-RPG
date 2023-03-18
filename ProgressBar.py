@@ -94,8 +94,8 @@ class ProgressBar(pygame.sprite.Sprite):
     def add_coin(self, amount=1):
         self.coin_count += amount
 
-    def add_diamond(self):
-        self.diamond_count += 1
+    def add_diamond(self, amount=1):
+        self.diamond_count += amount
 
     def updateDiamondText(self):
         text = self.font.render(str(self.diamond_count), True, (0, 0, 0))
