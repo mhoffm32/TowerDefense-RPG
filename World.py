@@ -3,9 +3,7 @@ import TowerDefenseMode.Exterior as Exterior
 import pygame
 from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.SubArea import SubArea
-
 import ProgressBar
-
 
 pygame.init()
 
@@ -28,15 +26,15 @@ state = 1  # paused is 0
 running = True
 while(running):
 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
     for p in pBar_group:
         if p.paused:
             state = 0
         else:
             state = 1
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
     if state == 1:
         for event in pygame.event.get():
