@@ -4,7 +4,7 @@ import pygame
 class Tower(GameObject):
     def __init__(self, screen):
         print("Initialize Tower")
-        super().__init__(400, 300, 'Images/player.PNG')
+        super().__init__(400, 300, 'Images/towerDefense/td_castle.png')
         self.image = pygame.transform.scale(self.image, (100,100))
         self.rect = self.image.get_rect()
         self.rect.x = 350

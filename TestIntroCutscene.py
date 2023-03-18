@@ -9,7 +9,7 @@ screen = pygame.display.set_mode((1000,700))
 screenRectangle = screen.get_rect()
 
 pygame.display.set_caption("Intro Cutscene")
-font = pygame.font.SysFont('Times',30)
+font = pygame.font.Font('ExplorationMode/Font/Enchanted Land.otf',40)
 text_boxes = [
     "Welcome to The Immortal Garden.",
     "You are the King/Queen of this kingdom. Your job is to protect the Tree of Immortality from the enemy army!",
