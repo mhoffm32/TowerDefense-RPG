@@ -35,10 +35,10 @@ class SubArea:
         self.doorGroup.empty()
         self.roomItemGroup.empty()
         if roomNumber == 0:
-            self.wallGroup.add(Wall(15,450,35,700, 'Images/mapObjects/walls/800x30_wall.png'))
-            self.wallGroup.add(Wall(985,450,35,700, 'Images/mapObjects/walls/800x30_wall.png'))
-            self.wallGroup.add(Wall(500,100,1000,38, 'Images/mapObjects/walls/800x30_wall.png'))
-            self.wallGroup.add(Wall(500, 685, 1000,38, 'Images/mapObjects/walls/800x30_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
             
 
             self.doorGroup.add(Door(350,85,'Images/mapObjects/door_sprite.png', 1, [500,500]))
@@ -48,12 +48,13 @@ class SubArea:
                     self.roomItemGroup.add(item)
 
         elif roomNumber == 1:
-            self.wallGroup.add(Wall(15,450,35,700, 'Images/mapObjects/walls/800x30_wall.png'))
-            self.wallGroup.add(Wall(985,450,35,700, 'Images/mapObjects/walls/800x30_wall.png'))
-            self.wallGroup.add(Wall(500,100,1000,38, 'Images/mapObjects/walls/800x30_wall.png'))
-            self.wallGroup.add(Wall(500, 685, 1000,38, 'Images/mapObjects/walls/800x30_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
 
-            self.wallGroup.add(Wall(800, 300, 1000,38, 'Images/mapObjects/walls/800x30_wall.png'))
+            self.wallGroup.add(Wall(800, 300, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(200, 400, 500,38, 'Images/mapObjects/walls/1000x38_wall.png'))
 
             self.doorGroup.add(Door(350,660,'Images/mapObjects/door_sprite.png', 0, [500,200]))
 
