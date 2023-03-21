@@ -10,7 +10,9 @@ screenRectangle = screen.get_rect()
 
 bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
 
+
 tdController = TowerDefenseModeController(screen)
+
 
 running = True
 while(running):
