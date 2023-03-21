@@ -28,9 +28,9 @@ class Player(Character):
         self.upSprite = pygame.transform.scale(self.upSprite, (50,70))
 
         if self.gender == 'female':
-            self.sideSprite = pygame.image.load('Images/boy/boy_mannequin_side_idle.png')
+            self.sideSprite = pygame.image.load('Images/girl/girl_mannequin_side.png')
             self.downSprite = pygame.image.load('Images/girl/girl_mannequin_forward.png')
-            self.upSprite = pygame.image.load('Images/boy/boy_mannequin_back_idle.png')
+            self.upSprite = pygame.image.load('Images/girl/girl_mannequin_back.png')
             self.sideSprite = pygame.transform.scale(self.sideSprite, (50,70))
             self.downSprite = pygame.transform.scale(self.downSprite, (50,70))
             self.upSprite = pygame.transform.scale(self.upSprite, (50,70))
@@ -45,20 +45,60 @@ class Player(Character):
             'medium': pygame.image.load('Images/boy/skin/forward/boy_medium_skin_forward.png').convert_alpha(),
             'dark': pygame.image.load('Images/boy/skin/forward/boy_dark_skin_forward.png').convert_alpha()
         }
+        self.male_skin_colour_images_SIDE = {
+            'light': pygame.image.load('Images/boy/skin/side/boy_light_skin_side.png').convert_alpha(),
+            'medium': pygame.image.load('Images/boy/skin/side/boy_medium_skin_side.png').convert_alpha(),
+            'dark': pygame.image.load('Images/boy/skin/side/boy_dark_skin_side.png').convert_alpha()
+        }
+        self.male_skin_colour_images_BACK = {
+            'light': pygame.image.load('Images/boy/skin/back/boy_light_skin_back.png').convert_alpha(),
+            'medium': pygame.image.load('Images/boy/skin/back/boy_medium_skin_back.png').convert_alpha(),
+            'dark': pygame.image.load('Images/boy/skin/back/boy_dark_skin_back.png').convert_alpha()
+        }
         self.male_hair_colour_images = {
             'blonde': pygame.image.load('Images/boy/hair/forward/boy_blonde_hair_forward.png').convert_alpha(),
             'brown': pygame.image.load('Images/boy/hair/forward/boy_brown_hair_forward.png').convert_alpha(),
             'black': pygame.image.load('Images/boy/hair/forward/boy_black_hair_forward.png').convert_alpha()
+        }
+        self.male_hair_colour_images_SIDE = {
+            'blonde': pygame.image.load('Images/boy/hair/side/boy_blonde_hair_side.png').convert_alpha(),
+            'brown': pygame.image.load('Images/boy/hair/side/boy_brown_hair_side.png').convert_alpha(),
+            'black': pygame.image.load('Images/boy/hair/side/boy_black_hair_side.png').convert_alpha()
+        }
+        self.male_hair_colour_images_BACK = {
+            'blonde': pygame.image.load('Images/boy/hair/back/boy_blonde_hair_back.png').convert_alpha(),
+            'brown': pygame.image.load('Images/boy/hair/back/boy_brown_hair_back.png').convert_alpha(),
+            'black': pygame.image.load('Images/boy/hair/back/boy_black_hair_back.png').convert_alpha()
         }
         self.female_skin_colour_images = {
             'light': pygame.image.load('Images/girl/skin/forward/girl_light_skin_forward.png').convert_alpha(),
             'medium': pygame.image.load('Images/girl/skin/forward/girl_medium_skin_forward.png').convert_alpha(),
             'dark': pygame.image.load('Images/girl/skin/forward/girl_dark_skin_forward.png').convert_alpha()
         }
+        self.female_skin_colour_images_SIDE = {
+            'light': pygame.image.load('Images/girl/skin/side/girl_light_skin_side.png').convert_alpha(),
+            'medium': pygame.image.load('Images/girl/skin/side/girl_medium_skin_side.png').convert_alpha(),
+            'dark': pygame.image.load('Images/girl/skin/side/girl_dark_skin_side.png').convert_alpha()
+        }
+        self.female_skin_colour_images_BACK = {
+            'light': pygame.image.load('Images/girl/skin/back/girl_light_skin_back.png').convert_alpha(),
+            'medium': pygame.image.load('Images/girl/skin/back/girl_medium_skin_back.png').convert_alpha(),
+            'dark': pygame.image.load('Images/girl/skin/back/girl_dark_skin_back.png').convert_alpha()
+        }
         self.female_hair_colour_images = {
             'blonde': pygame.image.load('Images/girl/hair/forward/girl_blonde_hair_forward.png').convert_alpha(),
             'brown': pygame.image.load('Images/girl/hair/forward/girl_brown_hair_forward.png').convert_alpha(),
             'black': pygame.image.load('Images/girl/hair/forward/girl_black_hair_forward.png').convert_alpha()
+        }
+        self.female_hair_colour_images_SIDE = {
+            'blonde': pygame.image.load('Images/girl/hair/side/girl_blonde_hair_side.png').convert_alpha(),
+            'brown': pygame.image.load('Images/girl/hair/side/girl_brown_hair_side.png').convert_alpha(),
+            'black': pygame.image.load('Images/girl/hair/side/girl_black_hair_side.png').convert_alpha()
+        }
+        self.female_hair_colour_images_BACK = {
+            'blonde': pygame.image.load('Images/girl/hair/back/girl_blonde_hair_back.png').convert_alpha(),
+            'brown': pygame.image.load('Images/girl/hair/back/girl_brown_hair_back.png').convert_alpha(),
+            'black': pygame.image.load('Images/girl/hair/back/girl_black_hair_back.png').convert_alpha()
         }
 
     def update(self):
@@ -105,6 +145,7 @@ class Player(Character):
         self.girlSprite = pygame.image.load('Images/girl/girl_mannequin_forward.png')
         
         if gender == 'male':
+            # blitting the forward facing hair and skin colours onto male mannequin
             self.image = pygame.transform.scale(self.boySprite, (self.rect.width, self.rect.height))
             self.male_skin_colour_images[skin_colour] = pygame.transform.scale(self.male_skin_colour_images[skin_colour], (self.rect.width, self.rect.height))
             self.image.blit(self.male_skin_colour_images[skin_colour], (0, 0))
@@ -112,6 +153,7 @@ class Player(Character):
             self.image.blit(self.male_hair_colour_images[hair_colour], (0, 0))
 
         elif gender == 'female':
+            # blitting the forward facing hair and skin colours onto female mannequin
             self.image = pygame.transform.scale(self.girlSprite, (self.rect.width, self.rect.height))
             self.female_skin_colour_images[skin_colour] = pygame.transform.scale(self.female_skin_colour_images[skin_colour], (self.rect.width, self.rect.height))
             self.image.blit(self.female_skin_colour_images[skin_colour], (0, 0))
