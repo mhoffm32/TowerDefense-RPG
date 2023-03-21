@@ -5,8 +5,14 @@ from ExplorationMode.Player import Player
 
 import pygame
 
+backgrounds = {
+    0: 'Images/backgrounds/brown_stone_floor.png',
+    1: 'Images/backgrounds/wood_floor.png',
+    # more room backgrounds here
+}
+
 class SubArea:
-    def __init__(self, roomNumber, screen, progressBar):
+    def __init__(self, roomNumber, screen, progressBar, background):
         print("Initialize Sub Area")
         self.roomNumber = roomNumber
         self.wallGroup = pygame.sprite.Group()
@@ -22,6 +28,8 @@ class SubArea:
         self.playerGroup.add(self.player)
 
     def update(self):
+        self.screen.blit(self.background, (0, 0))
+
         self.wallGroup.draw(self.screen)
         self.doorGroup.draw(self.screen)
         self.roomItemGroup.draw(self.screen)
@@ -34,6 +42,10 @@ class SubArea:
         self.wallGroup.empty()
         self.doorGroup.empty()
         self.roomItemGroup.empty()
+
+        background_path = backgrounds.get(roomNumber, 'Images/backgrounds/brown_stone_floor.png')
+        self.background = pygame.image.load(background_path)
+
         if roomNumber == 0:
             self.wallGroup.add(Wall(15,450,35,700, 'Images/mapObjects/walls/800x30_wall.png'))
             self.wallGroup.add(Wall(985,450,35,700, 'Images/mapObjects/walls/800x30_wall.png'))
