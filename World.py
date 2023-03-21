@@ -7,13 +7,14 @@ import ProgressBar
 
 pygame.init()
 
-screen = pygame.display.set_mode((1000,700))
+screen = pygame.display.set_mode((1000, 700))
 screenRectangle = screen.get_rect()
 
-#Progress Bar Stuff
+# Progress Bar Stuff
 progressBar = ProgressBar.ProgressBar(screen)
 pBar_group = pygame.sprite.Group(progressBar)
 level = Level(screen, progressBar)
+
 
 def render(events):
     pBar_group.update(events)
@@ -21,12 +22,16 @@ def render(events):
     pygame.display.flip()
     pygame.display.update()
 
-state = 1  # paused is 0              
+
+state = 1  # paused is 0
 
 running = True
+
 while(running):
 
-    for event in pygame.event.get():
+    events = pygame.event.get()
+
+    for event in events:
         if event.type == pygame.QUIT:
             running = False
 
@@ -43,8 +48,8 @@ while(running):
                     p.add_xp(5)
 
     level.update()
-    pBar_group.update(pygame.event.get())
+    pBar_group.update(events)
     pygame.display.flip()
-    screen.fill((0,0,0))
+    screen.fill((0, 0, 0))
 
 pygame.quit()
