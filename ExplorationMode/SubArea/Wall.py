@@ -8,6 +8,7 @@ class Wall(Obstacle):
         #if width == 35 and height == 700:
         #    super().__init__(x,y,'Images/mapObjects/walls/35x700_wall.png')
 
+
         super().__init__(x,y,imgPath)
 
         self.image = pygame.transform.scale(self.image, (width,height))

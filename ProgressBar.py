@@ -22,6 +22,8 @@ class ProgressBar(pygame.sprite.Sprite):
         self.timePaused = 0
         self.msgIndex = 0
 
+        self.timeRunning = pygame.time.get_ticks()/1000
+
         self.font = pygame.font.Font(
             'ExplorationMode/Font/Enchanted Land.otf', 28)
         self.attackMode = False
@@ -88,7 +90,7 @@ class ProgressBar(pygame.sprite.Sprite):
         pygame.draw.rect(self.surface, (184, 24, 27),
                          fillRect)
 
-    def set_timer(self, seconds):
+    def reset_timer(self, seconds):
         self.seconds = seconds
 
     def add_coin(self, amount=1):
