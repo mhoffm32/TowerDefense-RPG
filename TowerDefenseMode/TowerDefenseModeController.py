@@ -1,3 +1,4 @@
+import threading
 import pygame
 import sys
 import random
@@ -16,8 +17,7 @@ class TowerDefenseModeController:
         self.defenderGroup = pygame.sprite.Group()
         self.tower = Tower(self.screen)
         self.towerGroup.add(self.tower)
-        self.defenderGroup.add(Archer(500,350, self, self.screen))
-        self.defenderGroup.add(Archer(480,330, self, self.screen))
+        self.generateDefenders(0,0,0,0)
         self.generateWave(0)
 
     def update(self):
@@ -28,6 +28,7 @@ class TowerDefenseModeController:
         self.enemyGroup.update()
         self.towerGroup.update()
         self.defenderGroup.update()
+
 
     def findNearestEnemy(self, archerX, archerY):
         print("Finding Nearest Enemy")
@@ -42,7 +43,11 @@ class TowerDefenseModeController:
 
         return closestEnemy
 
-
+    def generateDefenders(self, numOfArchers, numOfPikeman, numOfBallista, numOfCannon):
+        print("Generate Defenders")
+        self.defenderGroup.clear()
+        self.defenderGroup.add(Archer(500,350, self, self.screen))
+        self.defenderGroup.add(Archer(480,330, self, self.screen))
 
     def generateWave(self, waveNumber):
         print("Generate Wave #" + str(waveNumber))
