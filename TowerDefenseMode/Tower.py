@@ -5,9 +5,9 @@ class Tower(GameObject):
     def __init__(self, screen):
         print("Initialize Tower")
         super().__init__(400, 300, 'Images/player.PNG')
-        self.image = pygame.transform.scale(self.image, (100,100))
+        self.image = pygame.transform.scale(self.image, (200,200))
         self.rect = self.image.get_rect()
-        self.rect.x = 350
+        self.rect.x = 400
         self.rect.y = 250
         self.health = 1000
         self.screen = screen

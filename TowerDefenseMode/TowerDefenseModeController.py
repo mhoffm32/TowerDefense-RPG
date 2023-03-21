@@ -5,6 +5,7 @@ import random
 sys.path.append('../se2250groupproject')
 from TowerDefenseMode.Enemy1 import Enemy1
 from TowerDefenseMode.Tower import Tower
+from TowerDefenseMode.Archer import Archer
 
 class TowerDefenseModeController:
     def __init__(self, screen):
@@ -12,16 +13,36 @@ class TowerDefenseModeController:
         self.screen = screen
         self.towerGroup = pygame.sprite.Group()
         self.enemyGroup = pygame.sprite.Group()
+        self.defenderGroup = pygame.sprite.Group()
         self.tower = Tower(self.screen)
         self.towerGroup.add(self.tower)
+        self.defenderGroup.add(Archer(500,350, self, self.screen))
+        self.defenderGroup.add(Archer(480,330, self, self.screen))
         self.generateWave(0)
 
     def update(self):
         self.towerGroup.draw(self.screen)
         self.enemyGroup.draw(self.screen)
+        self.defenderGroup.draw(self.screen)
 
         self.enemyGroup.update()
         self.towerGroup.update()
+        self.defenderGroup.update()
+
+    def findNearestEnemy(self, archerX, archerY):
+        print("Finding Nearest Enemy")
+        closestEnemy = 0
+        distance = 2000
+        for e in self.enemyGroup:
+            pos = pygame.math.Vector2(archerX, archerY)
+            currentDist = pos.distance_to(pygame.math.Vector2(e.rect.x, e.rect.y))
+            if(currentDist < distance):
+                closestEnemy = e
+                distance = currentDist
+
+        return closestEnemy
+
+
 
     def generateWave(self, waveNumber):
         print("Generate Wave #" + str(waveNumber))

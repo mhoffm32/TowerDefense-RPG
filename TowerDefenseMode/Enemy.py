@@ -22,6 +22,7 @@ class Enemy(Character):
         self.damage = 10
         self.attackSpeed = 2                    #in Seconds
         self.lastAttackTime = time.time()
+        self.dead = False
 
     def update(self):
         self.move()
@@ -29,8 +30,8 @@ class Enemy(Character):
 
     def getDirection(self):
         print("Get Enemey Direction")
-        directionX = 400 - self.rect.x
-        directionY = 300 - self.rect.y
+        directionX = 500 - self.rect.x
+        directionY = 350 - self.rect.y
         directionMagnitude = math.sqrt((directionX * directionX) + (directionY * directionY))
         direction = (directionX/directionMagnitude, directionY/directionMagnitude)
         return direction

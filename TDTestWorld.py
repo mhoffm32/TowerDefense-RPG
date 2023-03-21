@@ -10,7 +10,6 @@ screenRectangle = screen.get_rect()
 
 tdController = TowerDefenseModeController(screen)
 
-
 running = True
 while(running):
 
