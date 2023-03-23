@@ -46,7 +46,7 @@ class SubArea:
         background_path = backgrounds.get(roomNumber, 'Images/backgrounds/brown_stone_floor.png')
         self.background = pygame.image.load(background_path)
 
-        if roomNumber == 0:
+        if roomNumber == 0: #the courtyard
             self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
             self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
             self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
@@ -55,12 +55,36 @@ class SubArea:
             
 
             self.doorGroup.add(Door(350,85,'Images/mapObjects/door_sprite.png', 1, [500,500]))
+            self.doorGroup.add(Door(-10,350,'Images/mapObjects/door_side_sprite.png', 6, [820,350]))
+            self.doorGroup.add(Door(910,350,'Images/mapObjects/door_side_sprite.png', 7, [140,350]))
 
             for item in self.itemGroup:
                 if item.room == roomNumber:
                     self.roomItemGroup.add(item)
 
-        elif roomNumber == 1:
+
+        elif roomNumber == 6: #the shop
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+
+
+
+            self.doorGroup.add(Door(910,350,'Images/mapObjects/door_side_sprite.png', 0, [140,350]))            
+
+
+        elif roomNumber == 7: #the immortal tree
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+
+
+            self.doorGroup.add(Door(-10,350,'Images/mapObjects/door_side_sprite.png', 0, [820,350]))
+
+
+        elif roomNumber == 1: #maybe add stairs as an obstacle and the entry to the castle
             self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
             self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
             self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
@@ -71,15 +95,60 @@ class SubArea:
 
 
             self.doorGroup.add(Door(350,660,'Images/mapObjects/door_sprite.png', 0, [500,200]))
+            self.doorGroup.add(Door(350,85,'Images/mapObjects/door_sprite.png', 2, [500,500]))
 
             for item in self.itemGroup:
                 if item.room == roomNumber:
                     self.roomItemGroup.add(item)
-        elif roomNumber == 2:
-            self.wallGroup.add(Wall(15,450,35,700, 'Images/mapObjects/walls/35x700_hedge_wall.png'))
-            self.wallGroup.add(Wall(985,450,35,700, 'Images/mapObjects/walls/35x700_hedge_wall.png'))
-            self.wallGroup.add(Wall(500,100,1000,38, 'Images/mapObjects/walls/1000x38_hedge_wall.png'))
-            self.wallGroup.add(Wall(500, 685, 1000,38, 'Images/mapObjects/walls/1000x38_hedge_wall.png'))
+
+
+        elif roomNumber == 2: #castle entrance 
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            
+
+
+            self.doorGroup.add(Door(350,660,'Images/mapObjects/door_sprite.png', 1, [500,200]))
+            self.doorGroup.add(Door(350,85,'Images/mapObjects/door_sprite.png', 3, [500,500]))
+            
+
+
+        elif roomNumber == 3: #throne room
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+
+
+
+            self.doorGroup.add(Door(350,660,'Images/mapObjects/door_sprite.png', 2, [500,200]))
+            self.doorGroup.add(Door(350,85,'Images/mapObjects/door_sprite.png', 4, [500,500]))
+            self.doorGroup.add(Door(-10,350,'Images/mapObjects/door_side_sprite.png', 5, [820,350]))
+
+
+        elif roomNumber == 4: #king/queen's quarters for customization
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+
+
+
+            self.doorGroup.add(Door(350,660,'Images/mapObjects/door_sprite.png', 3, [500,200]))
+              
+
+
+        elif roomNumber == 5: #castle library
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+
+
+
+            self.doorGroup.add(Door(910,350,'Images/mapObjects/door_side_sprite.png', 3, [140,350]))
 
     def checkCollision(self):
         #Check Collision with Item
