@@ -56,8 +56,16 @@ class Enemy(Character, threading.Thread):
             self.lastAttackTime = time.time()*1000
 
     def inflictDamage(self, damage):
+        previousHealth = self.health
         self.health -= damage
         self.checkAlive()
+
+        # These if statements return the actual damage dealt
+
+        if previousHealth >= 0:
+            return damage
+        else:
+            return previousHealth
 
     def checkAlive(self):
         if self.health <= 0:

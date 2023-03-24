@@ -6,15 +6,15 @@ from TowerDefenseMode.Arrow import Arrow
 
 
 class Archer(Troop):
-    def __init__(self, towerDefenseController, screen, slotNumber):
+    def __init__(self, towerDefenseController, screen, slotNumber, damage, attackSpeed):
         img_path = 'Images/weapons/bow_arrow_sprite.png'
         super().__init__(0, 0,20,20, img_path)
         self.lastAttackTime = pygame.time.get_ticks()
-        self.attackSpeed = 2000                               # in millis
+        self.attackSpeed = attackSpeed                               # in millis
         self.arrowGroup = pygame.sprite.Group()
         self.towerDefenseController = towerDefenseController
         self.screen = screen
-        self.damage = 60
+        self.damage = damage
         self.setPosition(slotNumber)
         self.rect.center = (self.rect.x, self.rect.y)
 
