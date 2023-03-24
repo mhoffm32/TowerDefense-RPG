@@ -22,6 +22,9 @@ while(running):
             running = False
 
     tdController.update()
+    if tdController.checkWon():
+        print("Wave Defeated")
+        running = False
     pygame.display.flip()
     screen.blit(bg,(0,0))
 

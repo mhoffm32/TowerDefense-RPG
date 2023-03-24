@@ -93,11 +93,12 @@ class SubArea:
                     self.roomItemGroup.remove(item)
 
         #Check Collision with Door
-        doorCollisionDictionary = pygame.sprite.groupcollide(self.doorGroup, self.playerGroup, False, False)
-        for door in doorCollisionDictionary:
-            self.generateRoom(door.nextLevelNumber)
-            self.player.setPosition(door.newRoomSpawnLocation)
-            break
+        if(keysPressed[pygame.K_f]):
+            doorCollisionDictionary = pygame.sprite.groupcollide(self.doorGroup, self.playerGroup, False, False)
+            for door in doorCollisionDictionary:
+                self.generateRoom(door.nextLevelNumber)
+                self.player.setPosition(door.newRoomSpawnLocation)
+                break
 
         #Check Collision with Wall
         wallCollisionDictionary = pygame.sprite.groupcollide(self.playerGroup, self.wallGroup, False, False)

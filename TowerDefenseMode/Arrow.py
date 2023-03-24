@@ -3,7 +3,6 @@ from GameObject import GameObject
 
 class Arrow(GameObject):
     def __init__(self, damage, direction, speed, x, y, imgPath, enemy):
-        print("Initialize Arrow")
         super().__init__(x,y,imgPath)
         self.damage = damage
         self.direction = direction
@@ -11,7 +10,6 @@ class Arrow(GameObject):
         self.xPos = x
         self.yPos = y
         self.targetEnemy = enemy
-        print(str(speed) + " " + str(direction[0]) + " " + str(direction[1]))
 
     def update(self):
         self.move()
@@ -25,4 +23,5 @@ class Arrow(GameObject):
 
     def registerCollision(self):
         if pygame.sprite.collide_rect(self, self.targetEnemy):
-            self.targetEnemy.kill()
+            self.targetEnemy.inflictDamage(self.damage)
+            self.kill()
