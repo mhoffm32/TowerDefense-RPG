@@ -1,5 +1,4 @@
 import math
-import time
 
 import pygame
 from TowerDefenseMode.Troop import Troop
@@ -7,14 +6,17 @@ from TowerDefenseMode.Arrow import Arrow
 
 
 class Archer(Troop):
-    def __init__(self, x, y, towerDefenseController, screen):
+    def __init__(self, towerDefenseController, screen, slotNumber):
         img_path = 'Images/weapons/bow_arrow_sprite.png'
-        super().__init__(x, y,20,20, img_path)
-        self.lastAttackTime = 0
+        super().__init__(0, 0,20,20, img_path)
+        self.lastAttackTime = pygame.time.get_ticks()
         self.attackSpeed = 2000                               # in millis
         self.arrowGroup = pygame.sprite.Group()
         self.towerDefenseController = towerDefenseController
         self.screen = screen
+        self.damage = 60
+        self.setPosition(slotNumber)
+        self.rect.center = (self.rect.x, self.rect.y)
 
     def update(self):
         self.attack()
@@ -31,4 +33,6 @@ class Archer(Troop):
             arrowDirection[0] = arrowDirection[0]/directionMagnitude
             arrowDirection[1] = arrowDirection[1]/directionMagnitude
 
-            self.arrowGroup.add(Arrow(200, arrowDirection, .5, self.rect.x, self.rect.y, 'Images/weapons/arrow_sprite.png', nearestEnemy))
+            self.arrowGroup.add(Arrow(self.damage, arrowDirection, .5, self.rect.x, self.rect.y, 'Images/weapons/arrow_sprite.png', nearestEnemy))
+    
+    

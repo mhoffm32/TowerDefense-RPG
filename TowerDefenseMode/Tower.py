@@ -9,8 +9,7 @@ class Tower(GameObject):
         self.image = pygame.transform.scale(self.image, (200,200))
 
         self.rect = self.image.get_rect()
-        self.rect.x = 400
-        self.rect.y = 250
+        self.rect.center = (500, 350)
         self.health = 1000
         self.screen = screen
 
