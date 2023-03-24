@@ -4,7 +4,7 @@ from ExplorationMode.SubArea.SubArea import SubArea
 
 pygame.init()
 
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((1000,700))
 screenRectangle = screen.get_rect()
 bg_color = ('#639c7a')
 screen.fill(bg_color)
@@ -21,7 +21,6 @@ playerGroup.draw(screen)
 
 font = pygame.font.SysFont('Times',20)
 font2 = pygame.font.SysFont('Times',30)
-
 
 light_skin = pygame.Rect(550,200,50,50)
 medium_skin = pygame.Rect(610,200,50,50)
