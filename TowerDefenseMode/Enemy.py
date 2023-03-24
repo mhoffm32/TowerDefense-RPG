@@ -5,7 +5,7 @@ import pygame
 import threading
 
 
-class Enemy(Character):
+class Enemy(Character, threading.Thread):
     def __init__(self, x, y, img_path, tower):
         # initialize other enemy specific attributes
         super().__init__(x, y, img_path)
@@ -23,13 +23,13 @@ class Enemy(Character):
         self.attackSpeed = 2                    #in Seconds
         self.lastAttackTime = time.time()
         self.dead = False
+        self.health = 100
 
     def update(self):
         self.move()
         self.attack()
 
     def getDirection(self):
-        print("Get Enemey Direction")
         directionX = 500 - self.rect.x
         directionY = 350 - self.rect.y
         directionMagnitude = math.sqrt((directionX * directionX) + (directionY * directionY))
@@ -53,6 +53,22 @@ class Enemy(Character):
 
         if self.reachedTower and (int(time.time()*1000 - self.lastAttackTime)%(self.attackSpeed*1000) == 0):
             self.tower.inflictDamage(self.damage)
-            print(int(time.time() - self.lastAttackTime)%self.attackSpeed)
             self.lastAttackTime = time.time()*1000
+
+    def inflictDamage(self, damage):
+        previousHealth = self.health
+        self.health -= damage
+        self.checkAlive()
+
+        # These if statements return the actual damage dealt
+
+        if previousHealth >= 0:
+            return damage
+        else:
+            return previousHealth
+
+    def checkAlive(self):
+        if self.health <= 0:
+            self.kill()
+
 

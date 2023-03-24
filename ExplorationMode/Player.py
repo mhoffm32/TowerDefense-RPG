@@ -35,7 +35,7 @@ class Player(Character):
             self.downSprite = pygame.transform.scale(self.downSprite, (50,70))
             self.upSprite = pygame.transform.scale(self.upSprite, (50,70))
 
-        self.speed = 1
+        self.speed = 5
         self.screen = screen
         self.room = room
         self.progressBar = progressBar
