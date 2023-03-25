@@ -1,4 +1,5 @@
 import pygame
+from ExplorationMode.Player import Player
 
 # includes coins, level, diamonds, clock/timer
 
@@ -98,6 +99,11 @@ class ProgressBar(pygame.sprite.Sprite):
 
     def add_diamond(self, amount=1):
         self.diamond_count += amount
+
+    def setPlayer(self, name,gender,skin,hair,surface,pBar):
+        self.player = Player(name,gender,skin,
+                             hair,surface, pBar)
+    
 
     def updateDiamondText(self):
         text = self.font.render(str(self.diamond_count), True, (0, 0, 0))
