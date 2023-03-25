@@ -6,10 +6,10 @@ import threading
 
 
 class Enemy(Character, threading.Thread):
-    def __init__(self, x, y, img_path, tower):
+    def __init__(self, x, y, img_path, tower, width, height):
         # initialize other enemy specific attributes
         super().__init__(x, y, img_path)
-        self.image = pygame.transform.scale(self.image, (20,20))
+        self.image = pygame.transform.scale(self.image, (width,height))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y

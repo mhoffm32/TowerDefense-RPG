@@ -2,7 +2,7 @@ from GameObject import GameObject
 import pygame
 
 class Tower(GameObject):
-    def __init__(self, screen):
+    def __init__(self, screen, health):
         print("Initialize Tower")
 
         super().__init__(400, 300, 'Images/towerDefense/td_castle.png')
@@ -10,7 +10,7 @@ class Tower(GameObject):
 
         self.rect = self.image.get_rect()
         self.rect.center = (500, 350)
-        self.health = 1000
+        self.health = health
         self.screen = screen
 
     def update(self):
