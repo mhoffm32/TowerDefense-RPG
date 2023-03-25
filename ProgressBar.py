@@ -150,6 +150,10 @@ class ProgressBar(pygame.sprite.Sprite):
         self.messageRequest = True
         self.texts = texts
         self.messageCount = len(texts)
+    
+   
+    def set_player(self,player):
+        self.player = player
 
     def messageBoolean(self):
         if(self.messageRequest):
