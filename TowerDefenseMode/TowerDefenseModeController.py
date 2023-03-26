@@ -125,4 +125,8 @@ class TowerDefenseModeController:
             self.waveNumber += 1
             return True
         
+    def checkLost(self):
+        if (self.tower.health <= 0):
+            self.waveNumber += 1
+            return True
     
