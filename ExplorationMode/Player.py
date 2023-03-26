@@ -17,7 +17,7 @@ class Player(Character):
 
         self.progressBar = progressBar
 
-        super().__init__(100, 200, pygame.image.load('Images/girl/girl_mannequin_side.png'))
+        super().__init__(100, 200, 'Images/girl/girl_mannequin_side.png')
 
         #print(self.rect.width, self.rect.height)
 
@@ -259,7 +259,7 @@ class Player(Character):
         # self.rect.move_ip(self.rect.x,self.rect.y)
 
         # if the result of the move puts the player in a wall: revert movement
-        '''if self.room.checkCollision():
+        if self.room.checkCollision():
             if(keysPressed[pygame.K_LEFT]):
                 self.rect.x += self.speed
             if(keysPressed[pygame.K_RIGHT]):
@@ -267,7 +267,7 @@ class Player(Character):
             if(keysPressed[pygame.K_UP]):
                 self.rect.y += self.speed
             if(keysPressed[pygame.K_DOWN]):
-                self.rect.y -= self.speed'''
+                self.rect.y -= self.speed
 
     def setAttributes(self, gender, skin, hair):
         self.gender = gender

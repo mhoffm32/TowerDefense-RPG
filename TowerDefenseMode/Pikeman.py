@@ -6,7 +6,7 @@ from TowerDefenseMode.Troop import Troop
 class Pikeman(Troop):
     def __init__(self,screen, towerDefenseController, slotNumber, damage, attackSpeed):
         img_path = 'Images/weapons/pikeman_left_idle_sprite.png'
-        super().__init__(0, 0,50,50, img_path)
+        super().__init__(0, 0,20,20, img_path)
         self.lastAttackTime = pygame.time.get_ticks()
         self.attackSpeed = 1500                               # in millis
         self.arrowGroup = pygame.sprite.Group()
