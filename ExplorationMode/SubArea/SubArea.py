@@ -9,6 +9,8 @@ import pygame
 backgrounds = {
     0: 'Images/backgrounds/brown_stone_floor.png',
     1: 'Images/backgrounds/wood_floor.png',
+    3: 'Images/backgrounds/wood_floorV2.png',
+    4: 'Images/backgrounds/wood_floorV2.png',
     # more room backgrounds here
 }
 
@@ -56,10 +58,10 @@ class SubArea:
         self.background = pygame.image.load(background_path)
 
         if roomNumber == 0: #the courtyard
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
             self.doorGroup.add(Door(350,85,'Images/mapObjects/door_sprite.png', 1, [500,500]))
             self.doorGroup.add(Door(-10,350,'Images/mapObjects/door_side_sprite.png', 6, [820,350]))
@@ -67,10 +69,10 @@ class SubArea:
 
 
         elif roomNumber == 6: #the shop
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
 
 
@@ -78,23 +80,23 @@ class SubArea:
 
 
         elif roomNumber == 7: #the immortal tree
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
 
             self.doorGroup.add(Door(-10,350,'Images/mapObjects/door_side_sprite.png', 0, [820,350]))
 
 
         elif roomNumber == 1: #maybe add stairs as an obstacle and the entry to the castle
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
-            self.wallGroup.add(Wall(800, 300, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(200, 400, 500,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(800, 300, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(200, 400, 500,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
 
             self.doorGroup.add(Door(350,660,'Images/mapObjects/door_sprite.png', 0, [500,200]))
@@ -102,10 +104,10 @@ class SubArea:
 
 
         elif roomNumber == 2: #castle entrance 
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
             
 
 
@@ -115,10 +117,10 @@ class SubArea:
 
 
         elif roomNumber == 3: #throne room
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
 
 
@@ -128,10 +130,10 @@ class SubArea:
 
 
         elif roomNumber == 4: #king/queen's quarters for customization
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
 
 
@@ -140,10 +142,10 @@ class SubArea:
 
 
         elif roomNumber == 5: #castle library
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
 
 
@@ -197,7 +199,7 @@ class SubArea:
         self.itemGroup.add(Item(100, 0,0, 900,600,0, 'Images/coin.png'))
 
     def generateNPCs(self):
-        npcText = ["Hello Player! welcome to the castle. However there is something you need to know. you know of the tree correct?", "Legend states that long ago there was the ability to destroy it. The power was stored within a powerful crystal however it", "was said to be destroyed many centuries ago. However I believe the fragments still exist and when put back together, will", "have the power to once again destroy the tree. Here, you can have my crystal fragment. I collected this a while ago.",  "Maybe you can recreate the crystal. Although I hope you never need to use it."]
+        npcText = ["Hello Player! Welcome to the castle. There is something you need to know! You know of The Tree correct?", "Legend states that long ago there was the ability to destroy it. The power was stored within a powerful crystal that", "was said to be destroyed many centuries ago. However I believe the fragments still exist and when put back together, will", "have the power to once again destroy The Tree! Here, you can have my crystal fragment. I collected this a while ago.",  "Maybe you can recreate the crystal. Although I hope you never need to use it."]
         self.npcGroup.add(FriendlyCharacter(100,550, self.screen, npcText, self.player, 0, 1, 5, 0))
 
 
