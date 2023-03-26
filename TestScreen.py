@@ -1,6 +1,7 @@
 import pygame
 import time
 
+from ExplorationMode.Player import Player
 import ProgressBar
 from TestIntroCutscene import CutScene
 
@@ -19,6 +20,9 @@ pBar_group = pygame.sprite.Group([ProgressBar.ProgressBar(surface)])
 # just to test what its like to pause with a moving background
 myRect = pygame.Rect(300, 400, 300, 300)
 
+temp_player = Player(surface, ProgressBar.ProgressBar(surface), 400, 600)
+
+
 # cutScene obj
 
 introScene = CutScene(surface)
@@ -35,6 +39,11 @@ def render(events):
     pygame.display.flip()
     pygame.display.update()
 
+
+introScene.runScene()
+gamePlayer = temp_player.customize()
+
+gamePlayer_G = pygame.sprite.Group([gamePlayer])
 
 state = 1  # paused is 0
 
@@ -55,8 +64,9 @@ while running:
             running = False
 
     if state == 1:
-        while(introScene.run):
-            introScene.runScene()
+
+        gamePlayer_G.update()
+        gamePlayer_G.draw(surface)
 
         for event in events:
             if event.type == pygame.KEYDOWN:

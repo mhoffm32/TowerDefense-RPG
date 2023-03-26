@@ -1,4 +1,5 @@
 import pygame
+from ExplorationMode.Player import Player
 
 # includes coins, level, diamonds, clock/timer
 
@@ -18,6 +19,8 @@ class ProgressBar(pygame.sprite.Sprite):
         self.messageRequest = False
         self.messageCount = 0
         self.paused = False
+
+        self.startTime = pygame.time.get_ticks()/1000
 
         self.timePaused = 0
         self.msgIndex = 0
@@ -92,12 +95,18 @@ class ProgressBar(pygame.sprite.Sprite):
 
     def reset_timer(self, seconds):
         self.seconds = seconds
+        self.startTime = pygame.time.get_ticks()/1000
 
     def add_coin(self, amount=1):
         self.coin_count += amount
 
     def add_diamond(self, amount=1):
         self.diamond_count += amount
+
+    def setPlayer(self, name,gender,skin,hair,surface,pBar):
+        self.player = Player(name,gender,skin,
+                             hair,surface, pBar)
+    
 
     def updateDiamondText(self):
         text = self.font.render(str(self.diamond_count), True, (0, 0, 0))
@@ -144,6 +153,10 @@ class ProgressBar(pygame.sprite.Sprite):
         self.messageRequest = True
         self.texts = texts
         self.messageCount = len(texts)
+    
+   
+    def set_player(self,player):
+        self.player = player
 
     def messageBoolean(self):
         if(self.messageRequest):
@@ -160,7 +173,7 @@ class ProgressBar(pygame.sprite.Sprite):
             return False
 
     def updateTime(self):
-        elapsedTime = pygame.time.get_ticks()/1000
+        elapsedTime = pygame.time.get_ticks()/1000 - self.startTime
         if not self.paused:
             self.timeRemaining = self.seconds - elapsedTime + self.timePaused
             self.deltaT = self.seconds-self.timeRemaining

@@ -4,6 +4,7 @@ import pygame
 from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.SubArea import SubArea
 import ProgressBar
+from TowerDefenseMode.TowerDefenseModeController import TowerDefenseModeController
 
 pygame.init()
 
@@ -25,7 +26,14 @@ def render(events):
 
 state = 1  # paused is 0
 
+gameMode = 'explore'
+
+tdController = TowerDefenseModeController(screen)
+bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
+
 running = True
+
+progressBar.reset_timer(30)
 
 while(running):
 
@@ -47,9 +55,36 @@ while(running):
                 for p in pBar_group:
                     p.add_xp(5)
 
-    level.update()
-    pBar_group.update(events)
-    pygame.display.flip()
-    screen.fill((0, 0, 0))
+    if gameMode == 'explore':
+        level.update()
+        pBar_group.update(events)
+
+        if progressBar.attackMode:
+            print("Entering TD Mode")
+            gameMode = 'tdMode'
+            defenderStats = {'archerDamage' : 60, 'archerAttackSpeed' : 2000, 'pikemanDamage' : 90, 'pikemanAttackSpeed' : 2000, 'ballistaAttackSpeed' : 5000, 'ballistaProjectileHealth' : 120, 'towerHealth' : 700}
+            tdController.generateDefenders(5,5,5,0,defenderStats)
+            tdController.generateWave()
+    
+        pygame.display.flip()
+        screen.fill((0, 0, 0))
+
+    elif gameMode == 'tdMode':
+        tdController.update()
+        if tdController.checkLost():
+            print("Wave Lost")
+            gameMode = 'explore'
+            progressBar.reset_timer(20)
+            progressBar.attackMode = False
+            progressBar.add_xp(-15)
+        elif tdController.checkWon():
+            print("Wave Defeated")
+            gameMode = 'explore'
+            progressBar.reset_timer(20)
+            progressBar.attackMode = False
+            progressBar.add_xp(15)
+
+        pygame.display.flip()
+        screen.blit(bg,(0,0))
 
 pygame.quit()
