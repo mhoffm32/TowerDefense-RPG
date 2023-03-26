@@ -20,6 +20,8 @@ class ProgressBar(pygame.sprite.Sprite):
         self.messageCount = 0
         self.paused = False
 
+        self.startTime = pygame.time.get_ticks()/1000
+
         self.timePaused = 0
         self.msgIndex = 0
 
@@ -93,6 +95,7 @@ class ProgressBar(pygame.sprite.Sprite):
 
     def reset_timer(self, seconds):
         self.seconds = seconds
+        self.startTime = pygame.time.get_ticks()/1000
 
     def add_coin(self, amount=1):
         self.coin_count += amount
@@ -170,7 +173,7 @@ class ProgressBar(pygame.sprite.Sprite):
             return False
 
     def updateTime(self):
-        elapsedTime = pygame.time.get_ticks()/1000
+        elapsedTime = pygame.time.get_ticks()/1000 - self.startTime
         if not self.paused:
             self.timeRemaining = self.seconds - elapsedTime + self.timePaused
             self.deltaT = self.seconds-self.timeRemaining

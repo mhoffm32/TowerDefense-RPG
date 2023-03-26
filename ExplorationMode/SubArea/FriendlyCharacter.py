@@ -4,8 +4,8 @@ from ExplorationMode.SubArea.Item import Item
 
 
 class FriendlyCharacter(Character):
-    def __init__(self, x, y, screen, text, player, moneyValue, crystalValue, xpValue):
-        img_path = 'Images/player.PNG'
+    def __init__(self, x, y, screen, text, player, moneyValue, crystalValue, xpValue, room):
+        img_path = 'Images/boy/boy_mannequin_forward_idle.png'
         super().__init__(x, y, img_path)
         self.image = pygame.transform.scale(self.image, (50,70))
         self.rect = self.image.get_rect()
@@ -19,6 +19,7 @@ class FriendlyCharacter(Character):
         self.moneyValue = moneyValue
         self.crystalValue = crystalValue
         self.xpValue = xpValue
+        self.room = room
 
     def update(self):
         if self.interacting:
@@ -50,5 +51,6 @@ class FriendlyCharacter(Character):
         keysPressed = pygame.key.get_pressed()
         if keysPressed[pygame.K_ESCAPE]:
             self.interacting = False
-            self.interactedWith = True
-            self.player.collectItem(Item(self.moneyValue,self.crystalValue,self.xpValue,0,0,0,'Images/coin.png'))
+            if not self.interactedWith:
+                self.interactedWith = True
+                self.player.collectItem(Item(self.moneyValue,self.crystalValue,self.xpValue,0,0,0,'Images/coin.png'))
