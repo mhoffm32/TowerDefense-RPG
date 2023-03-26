@@ -277,6 +277,7 @@ class Player(Character):
     def collectItem(self, item):
         self.progressBar.add_coin(item.moneyValue)
         self.progressBar.add_diamond(item.crystalValue)
+        self.progressBar.add_xp(item.xpValue)
 
     def customize(self):
         pygame.init()
