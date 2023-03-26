@@ -63,7 +63,7 @@ while(running):
             print("Entering TD Mode")
             gameMode = 'tdMode'
             defenderStats = {'archerDamage' : 60, 'archerAttackSpeed' : 2000, 'pikemanDamage' : 90, 'pikemanAttackSpeed' : 2000, 'ballistaAttackSpeed' : 5000, 'ballistaProjectileHealth' : 120, 'towerHealth' : 700}
-            tdController.generateDefenders(0,20,0,0,defenderStats)
+            tdController.generateDefenders(5,5,5,0,defenderStats)
             tdController.generateWave()
     
         pygame.display.flip()
@@ -71,11 +71,18 @@ while(running):
 
     elif gameMode == 'tdMode':
         tdController.update()
-        if tdController.checkWon():
+        if tdController.checkLost():
+            print("Wave Lost")
+            gameMode = 'explore'
+            progressBar.reset_timer(20)
+            progressBar.attackMode = False
+            progressBar.add_xp(-15)
+        elif tdController.checkWon():
             print("Wave Defeated")
             gameMode = 'explore'
             progressBar.reset_timer(20)
             progressBar.attackMode = False
+            progressBar.add_xp(15)
 
         pygame.display.flip()
         screen.blit(bg,(0,0))
