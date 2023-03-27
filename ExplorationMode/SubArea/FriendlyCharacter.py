@@ -4,8 +4,7 @@ from ExplorationMode.SubArea.Item import Item
 
 
 class FriendlyCharacter(Character):
-    def __init__(self, x, y, screen, text, player, moneyValue, crystalValue, xpValue, room):
-        img_path = 'Images/boy/boy_mannequin_forward_idle.png'
+    def __init__(self, x, y, screen, text, player, moneyValue, crystalValue, xpValue, room,img_path):
         super().__init__(x, y, img_path)
         self.image = pygame.transform.scale(self.image, (50,70))
         self.rect = self.image.get_rect()
