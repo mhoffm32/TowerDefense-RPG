@@ -51,7 +51,7 @@ class SubArea:
 
         self.player.update()
         self.playerGroup.draw(self.screen)
-        self.npcGroup.update()
+        self.roomNPCGroup.update()
 
     def generateRoom(self, roomNumber):
         self.roomNumber = roomNumber
