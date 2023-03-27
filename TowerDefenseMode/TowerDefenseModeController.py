@@ -11,6 +11,7 @@ from TowerDefenseMode.Tower import Tower
 from TowerDefenseMode.Archer import Archer
 from TowerDefenseMode.Pikeman import Pikeman
 from TowerDefenseMode.Ballista import Ballista
+from TowerDefenseMode.Cannon import Cannon
 
 class TowerDefenseModeController:
     def __init__(self, screen):
@@ -61,6 +62,10 @@ class TowerDefenseModeController:
 
         for i in range(0,numOfBallista):
             self.defenderGroup.add(Ballista(self, self.screen, slotNumber, defenderStats['ballistaAttackSpeed'], defenderStats['ballistaProjectileHealth']))
+            slotNumber += 1
+
+        for i in range(0,numOfCannon):
+            self.defenderGroup.add(Cannon(self, self.screen, slotNumber, defenderStats['cannonDamage'], defenderStats['cannonAttackSpeed'], defenderStats['cannonRange']))
             slotNumber += 1
 
     def generateWave(self):

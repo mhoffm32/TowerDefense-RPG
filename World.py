@@ -62,8 +62,8 @@ while(running):
         if progressBar.attackMode:
             print("Entering TD Mode")
             gameMode = 'tdMode'
-            defenderStats = {'archerDamage' : 60, 'archerAttackSpeed' : 2000, 'pikemanDamage' : 90, 'pikemanAttackSpeed' : 2000, 'ballistaAttackSpeed' : 5000, 'ballistaProjectileHealth' : 120, 'towerHealth' : 700}
-            tdController.generateDefenders(5,5,5,0,defenderStats)
+            defenderStats = {'archerDamage' : 60, 'archerAttackSpeed' : 2000, 'pikemanDamage' : 90, 'pikemanAttackSpeed' : 2000, 'ballistaAttackSpeed' : 5000, 'ballistaProjectileHealth' : 120, 'towerHealth' : 700, 'cannonAttackSpeed' : 6000, 'cannonDamage' : 200, 'cannonRange' : 200}
+            tdController.generateDefenders(0,0,0,20,defenderStats)
             tdController.generateWave()
     
         pygame.display.flip()
