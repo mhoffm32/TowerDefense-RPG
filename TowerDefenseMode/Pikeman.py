@@ -8,7 +8,7 @@ class Pikeman(Troop):
         img_path = 'Images/weapons/pikeman_left_idle_sprite.png'
         super().__init__(0, 0,20,20, img_path)
         self.lastAttackTime = pygame.time.get_ticks()
-        self.attackSpeed = 1500                               # in millis
+        self.attackSpeed = attackSpeed                               # in millis
         self.arrowGroup = pygame.sprite.Group()
         self.towerDefenseController = towerDefenseController
         self.screen = screen
