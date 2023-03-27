@@ -4,16 +4,17 @@ from ExplorationMode.SubArea.Item import Item
 from ExplorationMode.SubArea.Furniture import Furniture
 from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.FriendlyCharacter import FriendlyCharacter
-
+import random
 import pygame
 
 backgrounds = {
-    0: 'Images/backgrounds/brown_stone_floor.png',
+    0: 'Images/backgrounds/wood_floorV2.png',
     1: 'Images/backgrounds/wood_floor.png',
     3: 'Images/backgrounds/wood_floorV2.png',
     4: 'Images/backgrounds/wood_floorV2.png',
     5: 'Images/backgrounds/wood_floorV2.png',
-    6: 'Images/backgrounds/wood_floor.png'
+    6: 'Images/backgrounds/wood_floor.png',
+    7: 'Images/backgrounds/garden_background.png'
     # more room backgrounds here
 }
 
@@ -81,12 +82,14 @@ class SubArea:
             self.doorGroup.add(Door(910,350,'Images/mapObjects/door_side_sprite.png', 0, [140,350]))            
 
         elif roomNumber == 7: #the immortal tree
-            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
-            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
-            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
-            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
+            self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_hedge_wall.png'))
+            self.wallGroup.add(Wall(965,0,35,700, 'Images/mapObjects/walls/35x700_hedge_wall.png'))
+            self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_hedge_wall.png'))
+            self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_hedge_wall.png'))
 
             self.doorGroup.add(Door(-10,350,'Images/mapObjects/door_side_sprite.png', 0, [820,350]))
+
+            self.furnitureGroup.add(Furniture(380,200,250,290,'Images/mapObjects/tree.png'))
 
         elif roomNumber == 1: #maybe add stairs as an obstacle and the entry to the castle
             self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_stone_wall.png'))
@@ -205,10 +208,22 @@ class SubArea:
         self.itemGroup.add(Item(100,0,0,40,600,5,coin))
 
     def generateNPCs(self):
-        npcText = ["Hello Player! Welcome to the castle. There is something you need to know! You know of The Tree correct?", "Legend states that long ago there was the ability to destroy it. The power was stored within a powerful crystal that", "was said to be destroyed many centuries ago. However I believe the fragments still exist and when put back together, will", "have the power to once again destroy The Tree! Here, you can have my crystal fragment. I collected this a while ago.",  "Maybe you can rebuild the crystal. Although I hope you never need to use it."]
-        self.npcGroup.add(FriendlyCharacter(100,550, self.screen, npcText, self.player, 0, 1, 5, 0,'Images/boy/boy_mannequin_forward_idle.png'))
-        shopkeeperText = ["Hello Player. Please purchase an upgrade for the tower defense here in this shop!", "Also, I found this crystal on the ground. You can have it! Thanks for visiting."]
-        self.npcGroup.add(FriendlyCharacter(350,87,self.screen,shopkeeperText,self.player,0,1,5,6,'Images/girl/girl_mannequin_forward.png'))
+        npcText = ["Hello your Majesty! Welcome to the castle. There is something you need to know! You know of The Tree correct?", "Legend states that long ago there was the ability to destroy it. The power was stored within a powerful crystal that", "was said to be destroyed many centuries ago. However I believe the fragments still exist and when put back together, will", "have the power to once again destroy The Tree! Here, you can have my crystal fragment. I collected this a while ago.",  "Maybe you can rebuild the crystal. Although I hope you never need to use it."]
+        self.npcGroup.add(FriendlyCharacter(100,550, self.screen, npcText, self.player, 0, 1, 5, 0,'Images/npc/npc1.png'))
+        
+        shopkeeperText = ["Hello your Highness. Please purchase an upgrade for the tower defense here in this shop!", "Also, I found this crystal on the ground. You can have it! Thanks for visiting."]
+        self.npcGroup.add(FriendlyCharacter(350,87,self.screen,shopkeeperText,self.player,0,1,5,6,'Images/npc/shopkeeper.png'))
 
+        defaultGuardText = ["Hope you are staying out of trouble your Highness.","Please be careful out there your Majesty, these are dangerous times.","Hello. I hope you are doing well your Highness."]
+        self.npcGroup.add(FriendlyCharacter(290, 120, self.screen, [defaultGuardText[0]], self.player, 0, 0, 0, 0, 'Images/npc/castle_guard1.png'))
+        self.npcGroup.add(FriendlyCharacter(470, 120, self.screen, [defaultGuardText[2]], self.player, 0, 0, 0, 0, 'Images/npc/castle_guard2.png'))
 
+        self.npcGroup.add(FriendlyCharacter(290, 120, self.screen, [defaultGuardText[1]], self.player, 0, 0, 0, 1, 'Images/npc/castle_guard3.png'))
+        self.npcGroup.add(FriendlyCharacter(470, 120, self.screen, [defaultGuardText[0]], self.player, 0, 0, 0, 1, 'Images/npc/castle_guard1.png'))
 
+        bedroomGuardText = ["Past these doors are your bedroom chambers, your Highness.","Welcome back your Highness."]
+        self.npcGroup.add(FriendlyCharacter(290, 120, self.screen, [bedroomGuardText[0]], self.player, 0, 0, 0, 3, 'Images/npc/castle_guard2.png'))
+        self.npcGroup.add(FriendlyCharacter(470, 120, self.screen, [bedroomGuardText[1]], self.player, 0, 0, 0, 3, 'Images/npc/castle_guard3.png'))
+
+        libraryGuardText = ["Welcome to the Library, your Majesty. Feel free to look around."]
+        self.npcGroup.add(FriendlyCharacter(700, 400, self.screen, libraryGuardText, self.player, 0, 0, 0, 5, 'Images/npc/castle_guard1.png'))
