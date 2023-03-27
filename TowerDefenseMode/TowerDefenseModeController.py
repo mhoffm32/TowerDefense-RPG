@@ -33,7 +33,7 @@ class TowerDefenseModeController:
 
 
     def findNearestEnemy(self, archerX, archerY):
-        closestEnemy = Enemy(-1000,-1000,'Images/boy/boy_mannequin_back_idle.png',self.tower, 20, 20)
+        closestEnemy = Enemy(-1000,-1000,'Images/weapons/enemy1.png',self.tower, 20, 20)
         distance = 2000
         for e in self.enemyGroup:
             pos = pygame.math.Vector2(archerX, archerY)
@@ -72,30 +72,30 @@ class TowerDefenseModeController:
         for i in range(0,self.waveNumber + 2):
             sector = random.randint(0,3)
             if sector == 0:  #sector zero will be the top of the screen
-                self.enemyGroup.add(Enemy(random.randint(20,780),20,'Images/boy/boy_mannequin_back_idle.png',self.tower, 20, 20))
+                self.enemyGroup.add(Enemy(random.randint(20,780),20,'Images/weapons/enemy1.png',self.tower, 20, 20))
 
             elif sector == 1:  #sector zero will be the right of the screen
-                self.enemyGroup.add(Enemy(780,random.randint(20,580),'Images/boy/boy_mannequin_back_idle.png',self.tower, 20, 20))
+                self.enemyGroup.add(Enemy(780,random.randint(20,580),'Images/weapons/enemy1.png',self.tower, 20, 20))
 
             elif sector == 2:  #sector zero will be the bottom of the screen
-                self.enemyGroup.add(Enemy(random.randint(20,780),580,'Images/boy/boy_mannequin_back_idle.png',self.tower, 20, 20))
+                self.enemyGroup.add(Enemy(random.randint(20,780),580,'Images/weapons/enemy1.png',self.tower, 20, 20))
 
             else:  #sector 3 will be the left of the screen
-                self.enemyGroup.add(Enemy(20,random.randint(20,580),'Images/boy/boy_mannequin_back_idle.png',self.tower, 20, 20))
+                self.enemyGroup.add(Enemy(20,random.randint(20,580),'Images/weapons/enemy1.png',self.tower, 20, 20))
 
         for i in range(0, (self.waveNumber - 2)*2):
             sector = random.randint(0,3)
             if sector == 0:  #sector zero will be the top of the screen
-                self.enemyGroup.add(Enemy1(random.randint(20,780),20,'Images/girl/girl_mannequin_forward.png',self.tower))
+                self.enemyGroup.add(Enemy1(random.randint(20,780),20,'Images/weapons/enemy2.png',self.tower))
 
             elif sector == 1:  #sector zero will be the right of the screen
-                self.enemyGroup.add(Enemy1(780,random.randint(20,580),'Images/girl/girl_mannequin_forward.png',self.tower))
+                self.enemyGroup.add(Enemy1(780,random.randint(20,580),'Images/weapons/enemy2.png',self.tower))
 
             elif sector == 2:  #sector zero will be the bottom of the screen
-                self.enemyGroup.add(Enemy1(random.randint(20,780),580,'Images/girl/girl_mannequin_forward.png',self.tower))
+                self.enemyGroup.add(Enemy1(random.randint(20,780),580,'Images/weapons/enemy2.png',self.tower))
 
             else:  #sector 3 will be the left of the screen
-                self.enemyGroup.add(Enemy1(20,random.randint(20,580),'Images/girl/girl_mannequin_forward.png',self.tower))
+                self.enemyGroup.add(Enemy1(20,random.randint(20,580),'Images/weapons/enemy2.png',self.tower))
 
         for i in range(0, (self.waveNumber - 3)):
             sector = random.randint(0,3)
@@ -114,16 +114,16 @@ class TowerDefenseModeController:
         for i in range(0, (self.waveNumber - 3)):
             sector = random.randint(0,3)
             if sector == 0:  #sector zero will be the top of the screen
-                self.enemyGroup.add(Enemy3(random.randint(20,780),20,'Images/boy/boy_mannequin_back_idle.png',self.tower))
+                self.enemyGroup.add(Enemy3(random.randint(20,780),20,'Images/weapons/enemy3.png',self.tower))
 
             elif sector == 1:  #sector zero will be the right of the screen
-                self.enemyGroup.add(Enemy3(780,random.randint(20,580),'Images/boy/boy_mannequin_back_idle.png',self.tower))
+                self.enemyGroup.add(Enemy3(780,random.randint(20,580),'Images/weapons/enemy3.png',self.tower))
 
             elif sector == 2:  #sector zero will be the bottom of the screen
-                self.enemyGroup.add(Enemy3(random.randint(20,780),580,'Images/boy/boy_mannequin_back_idle.png',self.tower))
+                self.enemyGroup.add(Enemy3(random.randint(20,780),580,'Images/weapons/enemy3.png',self.tower))
 
             else:  #sector 3 will be the left of the screen
-                self.enemyGroup.add(Enemy3(20,random.randint(20,580),'Images/boy/boy_mannequin_back_idle.png',self.tower))
+                self.enemyGroup.add(Enemy3(20,random.randint(20,580),'Images/weapons/enemy3.png',self.tower))
 
     def checkWon(self):
         if (len(self.enemyGroup) <= 0):
