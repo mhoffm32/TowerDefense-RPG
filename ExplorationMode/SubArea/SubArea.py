@@ -10,11 +10,12 @@ import pygame
 backgrounds = {
     0: 'Images/backgrounds/wood_floorV2.png',
     1: 'Images/backgrounds/wood_floor.png',
+    2: 'Images/backgrounds/wood_floor.png',
     3: 'Images/backgrounds/wood_floorV2.png',
     4: 'Images/backgrounds/wood_floorV2.png',
     5: 'Images/backgrounds/wood_floorV2.png',
     6: 'Images/backgrounds/wood_floor.png',
-    7: 'Images/backgrounds/garden_background.png'
+    7: 'Images/backgrounds/garden.png'
     # more room backgrounds here
 }
 
@@ -79,7 +80,12 @@ class SubArea:
             self.wallGroup.add(Wall(0,87,1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
             self.wallGroup.add(Wall(0, 662, 1000,38, 'Images/mapObjects/walls/1000x38_stone_wall.png'))
 
-            self.doorGroup.add(Door(910,350,'Images/mapObjects/door_side_sprite.png', 0, [140,350]))            
+            self.doorGroup.add(Door(910,350,'Images/mapObjects/door_side_sprite.png', 0, [140,350])) 
+
+            self.furnitureGroup.add(Furniture(500,100,200,200,'Images/mapObjects/empty_shelf.png')) 
+            self.furnitureGroup.add(Furniture(700,100,200,200,'Images/mapObjects/empty_shelf.png'))           
+            self.furnitureGroup.add(Furniture(150,200,200,200,'Images/mapObjects/shopkeeper_desk.png'))           
+
 
         elif roomNumber == 7: #the immortal tree
             self.wallGroup.add(Wall(0,0,35,700, 'Images/mapObjects/walls/35x700_hedge_wall.png'))
@@ -212,7 +218,7 @@ class SubArea:
         self.npcGroup.add(FriendlyCharacter(100,550, self.screen, npcText, self.player, 0, 1, 5, 0,'Images/npc/npc1.png'))
         
         shopkeeperText = ["Hello your Highness. Please purchase an upgrade for the tower defense here in this shop!", "Also, I found this crystal on the ground. You can have it! Thanks for visiting."]
-        self.npcGroup.add(FriendlyCharacter(350,87,self.screen,shopkeeperText,self.player,0,1,5,6,'Images/npc/shopkeeper.png'))
+        self.npcGroup.add(FriendlyCharacter(350,150,self.screen,shopkeeperText,self.player,0,1,5,6,'Images/npc/shopkeeper.png'))
 
         defaultGuardText = ["Hope you are staying out of trouble your Highness.","Please be careful out there your Majesty, these are dangerous times.","Hello. I hope you are doing well your Highness."]
         self.npcGroup.add(FriendlyCharacter(290, 120, self.screen, [defaultGuardText[0]], self.player, 0, 0, 0, 0, 'Images/npc/castle_guard1.png'))
