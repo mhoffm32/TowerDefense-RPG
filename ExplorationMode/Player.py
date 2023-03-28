@@ -15,9 +15,10 @@ class Player(Character):
         self.screen = screen
         self.room = room
 
-        self.progressBar = progressBar
-
         super().__init__(100, 200, 'Images/girl/girl_mannequin_side.png')
+
+        self.progressBar = progressBar
+        self.pet = self.progressBar.pet
 
         #print(self.rect.width, self.rect.height)
 
@@ -169,6 +170,20 @@ class Player(Character):
         self.female_hair_images = [self.female_hair_colour_images_UP,
                                    self.female_hair_colour_images_RIGHT, self.female_hair_colour_images_LEFT, self.female_hair_colour_images_DOWN]
 
+    def hasPet(self):
+        if not (self.progressBar.pet == None):
+            self.pet = self.progressBar.pet
+            return True
+        else:
+            return False
+
+    def get_pet_img(self):
+        if(self.sprite_index == 2) or (self.sprite_index == 3):
+            return self.pet.l_image
+
+        elif(self.sprite_index == 1) or (self.sprite_index == 0):
+            return self.pet.r_image
+
     def updateCharacter(self):
 
         # updating female hair
@@ -211,6 +226,11 @@ class Player(Character):
                 self.male_skin_img, self.playerSize)
 
             self.image.blit(self.male_skin_img, (0, 0))
+
+        if self.hasPet():
+            self.pet_img = self.get_pet_img()
+
+            self.screen.blit(self.pet_img, self.rect.topright)
 
         super().update_img(self.image)
 
@@ -259,15 +279,17 @@ class Player(Character):
         # self.rect.move_ip(self.rect.x,self.rect.y)
 
         # if the result of the move puts the player in a wall: revert movement
-        if self.room.checkCollision():
-            if(keysPressed[pygame.K_LEFT]):
-                self.rect.x += self.speed
-            if(keysPressed[pygame.K_RIGHT]):
-                self.rect.x -= self.speed
-            if(keysPressed[pygame.K_UP]):
-                self.rect.y += self.speed
-            if(keysPressed[pygame.K_DOWN]):
-                self.rect.y -= self.speed
+
+        if(self.room):
+            if self.room.checkCollision():
+                if(keysPressed[pygame.K_LEFT]):
+                    self.rect.x += self.speed
+                if(keysPressed[pygame.K_RIGHT]):
+                    self.rect.x -= self.speed
+                if(keysPressed[pygame.K_UP]):
+                    self.rect.y += self.speed
+                if(keysPressed[pygame.K_DOWN]):
+                    self.rect.y -= self.speed
 
     def setAttributes(self, gender, skin, hair):
         self.gender = gender

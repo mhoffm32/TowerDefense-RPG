@@ -10,18 +10,18 @@ pygame.init()
 
 # Initializing surface
 surface = pygame.display.set_mode((1100, 800))
-surface.fill((70, 9, 2))
+surface.fill((153, 204, 255))
 
 # Initializing Color
 
-pBar_group = pygame.sprite.Group([ProgressBar.ProgressBar(surface)])
+prog = ProgressBar.ProgressBar(surface)
+
+pBar_group = pygame.sprite.Group([prog])
 
 
 # just to test what its like to pause with a moving background
 myRect = pygame.Rect(300, 400, 300, 300)
-
-temp_player = Player(surface, ProgressBar.ProgressBar(surface), 400, 600)
-
+temp_player = Player(surface, prog, 400, 600)
 
 # cutScene obj
 
@@ -29,9 +29,9 @@ introScene = CutScene(surface)
 
 
 def homeUpdate():
-    surface.fill((70, 9, 2))
-    pygame.draw.rect(surface, (110, 74, 11), myRect)
-    myRect.move_ip(1, 0)
+    surface.fill((120, 180, 240))
+    #pygame.draw.rect(surface, (110, 74, 11), myRect)
+    #myRect.move_ip(1, 0)
 
 
 def render(events):
@@ -40,7 +40,7 @@ def render(events):
     pygame.display.update()
 
 
-introScene.runScene()
+# introScene.runScene()
 gamePlayer = temp_player.customize()
 
 gamePlayer_G = pygame.sprite.Group([gamePlayer])
@@ -64,14 +64,18 @@ while running:
             running = False
 
     if state == 1:
-
         gamePlayer_G.update()
         gamePlayer_G.draw(surface)
 
         for event in events:
             if event.type == pygame.KEYDOWN:
-                for p in pBar_group:
-                    p.add_xp(5)
+                if event.key == pygame.K_1:
+                    for p in pBar_group:
+                        p.equip_pet_item('green')
+                        #gamePlayer.pet = p.pet_items['purple']
+
+        # for event in events:
+        # if event.type == pygame.KEYDOWN:
 
         render(events)
         homeUpdate()
