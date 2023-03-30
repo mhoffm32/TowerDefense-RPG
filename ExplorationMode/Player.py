@@ -303,7 +303,7 @@ class Player(Character):
     def customize(self):
         pygame.init()
 
-        screen = pygame.display.set_mode((1100, 800))
+        screen = pygame.display.set_mode((1000, 700))
         screenRectangle = screen.get_rect()
 
         bg_color = ('#639c7a')
@@ -459,7 +459,6 @@ class Player(Character):
         self.progressBar.set_player(gamePlayer)
         return gamePlayer
         # Quit Pygame
-
 
 pygame.init()
 
