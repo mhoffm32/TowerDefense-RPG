@@ -1,6 +1,4 @@
-from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.SubArea import SubArea
-import pygame
 
 class Level:
     def __init__(self, screen, progressBar):
