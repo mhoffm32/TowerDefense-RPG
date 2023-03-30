@@ -8,6 +8,8 @@ from TowerDefenseMode import TowerDefenseModeController
 
 # add pause button
 
+# cutscenes, pause button, store
+
 
 class ProgressBar(pygame.sprite.Sprite):
     def __init__(self, surface):
@@ -15,30 +17,23 @@ class ProgressBar(pygame.sprite.Sprite):
         self.diamond_count = 0
         self.coin_count = 100
         self.level = 0
-        self.levelPoints = 0  # out of 100
+        self.xp = 50  # out of 100
         self.surface = surface
-        self.seconds = 180
-        self.timeRemaining = self.seconds
-        self.prevTime = self.timeRemaining
-        self.clock = pygame.time.Clock()
+        self.paused = False
+        self.pet = None
+
+        self.progressFill = (75, 148, 49)
 
         # time stuff
+        self.seconds = 180
+        self.timeRemaining = self.seconds
         self.time1 = time.time()
         self.time2 = self.time1+self.seconds
 
-        self.clockImg_index = 1
+        # message stuff
         self.messageRequest = False
         self.messageCount = 0
-        self.paused = False
-        self.deltaT = 0
-        self.timePaused = 0
-        self.startTime = pygame.time.get_ticks()/1000
-        self.timePaused = 0
         self.msgIndex = 0
-        self.timeRunning = pygame.time.get_ticks()/1000
-        self.pet = None
-
-        #self.defenderStats = tdcontroller.defenderStats
 
         self.td_items = {'archerDamage': TD_item(20, "Archer Damage", 40, 60),
                          'archerAttackSpeed': TD_item(30, "Archer Attack Speed", 1000, 2000),
@@ -69,18 +64,13 @@ class ProgressBar(pygame.sprite.Sprite):
             pygame.image.load('Images/Diamond.png'), (75, 75))
         self.coin_img = pygame.transform.scale(
             pygame.image.load('Images/Coin.png'), (75, 75))
-        self.current_clock_img = pygame.transform.scale(
-            pygame.image.load('Images/clock/clock1.png'), (40, 40))
 
-        self.clock_images = [pygame.transform.scale(
-            pygame.image.load('Images/clock/clock4.png'), (38, 38)), pygame.transform.scale(
-            pygame.image.load('Images/clock/clock2.png'), (38, 38)), pygame.transform.scale(
-            pygame.image.load('Images/clock/clock1.png'), (38, 38)), pygame.transform.scale(
-            pygame.image.load('Images/clock/clock3.png'), (38, 38))]
+        self.clock_img = pygame.transform.scale(
+            pygame.image.load('Images/clock/clock2.png'), (38, 38))
 
         self.diamond_rect = self.diamond_img.get_rect()
         self.coin_rect = self.coin_img.get_rect()
-        self.clock_rect = self.current_clock_img.get_rect()
+        self.clock_rect = self.clock_img.get_rect()
 
         # width 1100 and height 90
         self.rect = pygame.Rect(0, 0, surface.get_width(), 90)
@@ -90,8 +80,17 @@ class ProgressBar(pygame.sprite.Sprite):
         self.levelProgress_rect = pygame.Rect((self.surface.get_width(
         ) - rect_width) // 2, (self.rect.height + rect_height)*2 // 3 - 15, rect_width, rect_height)
 
-        # self.update()
-        # asyncio.run(self.timer(120))
+        self.pause_msg = "pause"
+        self.pause_text = self.font.render(self.pause_msg, True,
+                                           (255, 255, 255), (3, 73, 171))
+        self.pause_rect = self.pause_text.get_rect()
+        self.pause_rect.center = (40, 25)
+        self.bg_rect = pygame.Rect(0, 0, 60, 35)
+        self.bg_rect.center = self.pause_rect.center
+        pygame.draw.rect(self.surface, (3, 73, 171),
+                         self.bg_rect)
+        self.surface.blit(self.pause_text, self.pause_rect)
+
         pygame.display.update()
 
     def purchase_td_upgrade(self, key):
@@ -127,36 +126,47 @@ class ProgressBar(pygame.sprite.Sprite):
             item.equipped = True
             self.pet = item
 
-    def updateLevelProgress_Text(self):
+    def checkPause(self, events):
+        # checking pause button clicked
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.bg_rect.collidepoint(event.pos):
+                    if self.paused:
+                        self.paused = False
+                        self.pause_msg = "pause"
+                        self.reset_timer(self.timeRemaining)
+                    else:
+                        self.pause_msg = "unpause"
+                        self.paused = True
 
-        text = self.font.render("Level " + str(self.level), True, (0, 0, 0))
+    def updateLevelProgress_Text(self):
+        text = self.font.render("Progress", True, (0, 0, 0))
         textRect = text.get_rect()
         textRect.x = self.levelProgress_rect.x+self.levelProgress_rect.width+5
         textRect.y = self.levelProgress_rect.centery - textRect.height/2
         self.surface.blit(text, textRect)
 
         text = self.font.render(
-            str("{:.0f}".format(self.levelPoints)) + " %", True, (0, 0, 0))
+            str("{:.0f}".format(self.xp)) + " %", True, (0, 0, 0))
         textRect = text.get_rect()
         textRect.x = self.levelProgress_rect.x - textRect.width - 7
         textRect.y = self.levelProgress_rect.centery - textRect.height/2
         self.surface.blit(text, textRect)
 
-    def add_xp(self, points=0):
+    def update_xp(self, points=0):
 
         fillRect = self.levelProgress_rect.copy()
         fillRect.width = float(
-            self.levelProgress_rect.width)*self.levelPoints/100
+            self.levelProgress_rect.width)*self.xp/100
 
-        self.levelPoints += points
+        self.xp += points
 
-        if self.levelPoints >= 100:
-            self.level += 1
-            self.levelPoints = 0
-            self.setMessage(["level up"])
-            fillRect.width = 0
+        if self.xp >= 100:
+            pygame.draw.rect(self.surface, self.progressFill,
+                             fillRect)
+            self.setMessage(["win!"])
 
-        pygame.draw.rect(self.surface, (184, 24, 27),
+        pygame.draw.rect(self.surface, self.progressFill,
                          fillRect)
 
     def reset_timer(self, seconds):
@@ -197,7 +207,7 @@ class ProgressBar(pygame.sprite.Sprite):
             str("{}:{}".format(minutes, seconds)), True, (0, 0, 0))
         textRect = text.get_rect()
         textRect.center = (self.surface.get_width()*2/3 +
-                           self.clock_images[self.clockImg_index].get_width() - 5, 25)
+                           self.clock_img.get_width() - 5, 25)
         self.surface.blit(text, textRect)
 
     def popUpMessage(self):
@@ -249,9 +259,14 @@ class ProgressBar(pygame.sprite.Sprite):
 
     def updateTime(self):
 
-        self.timeRemaining = self.time2-time.time()
+        if self.paused:
+            self.timeRemaining = self.time_copy
+        else:
+            self.timeRemaining = self.time2-time.time()
+            self.time_copy = self.timeRemaining
 
-        # Pause needs to be implemented
+        if self.timeRemaining <= 0:
+            self.attackMode = True
 
     def update(self, events):
 
@@ -271,7 +286,7 @@ class ProgressBar(pygame.sprite.Sprite):
 
         pygame.draw.rect(self.surface, (247, 228, 210),
                          self.levelProgress_rect)
-        self.add_xp()
+        self.update_xp()
         self.updateLevelProgress_Text()
         pygame.draw.rect(self.surface, (0, 0, 0),
                          self.levelProgress_rect, width=2)
@@ -282,11 +297,23 @@ class ProgressBar(pygame.sprite.Sprite):
         self.surface.blit(self.coin_img, ((self.surface.get_width() -
                                            self.coin_img.get_width())/2, -10))
 
-        curr_clkImg = self.clock_images[self.clockImg_index]
+        self.surface.blit(self.clock_img, (self.surface.get_width()
+                          * 2/3 - self.clock_img.get_width(), 5))
 
-        self.surface.blit(curr_clkImg, (self.surface.get_width()
-                          * 2/3 - curr_clkImg.get_width(), 5))
+        # pause thing
+        self.pause_text = self.font.render(self.pause_msg, True,
+                                           (255, 255, 255), (3, 73, 171))
+        self.pause_rect = self.pause_text.get_rect()
+        self.pause_rect.center = (45, 25)
+        self.bg_rect = pygame.Rect(0, 0, 70, 35)
+        self.bg_rect.center = self.pause_rect.center
+        pygame.draw.rect(self.surface, (3, 73, 171),
+                         self.bg_rect)
+        self.surface.blit(self.pause_text, self.pause_rect)
+        pygame.draw.rect(self.surface, (0, 0, 0),
+                         self.bg_rect, width=2)
 
+        self.checkPause(events)
         self.updateDiamondText()
         self.updateCoinText()
         self.updateClockText()

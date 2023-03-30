@@ -28,11 +28,11 @@ state = 1  # paused is 0
 
 gameMode = 'explore'
 
-tdController = TowerDefenseModeController(screen)
+tdController = TowerDefenseModeController(screen, progressBar)
 bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
 
-running = True
 
+running = True
 progressBar.reset_timer(30)
 
 while(running):
@@ -53,7 +53,7 @@ while(running):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 for p in pBar_group:
-                    p.add_xp(5)
+                    p.update_xp(5)
 
     if gameMode == 'explore':
         level.update()
@@ -77,11 +77,11 @@ while(running):
             gameMode = 'explore'
             progressBar.reset_timer(20)
             progressBar.attackMode = False
-            progressBar.add_xp(-15)
+            progressBar.update_xp(-15)
         elif tdController.checkWon():
             print("Wave Defeated")
             gameMode = 'explore'
-            progressBar.reset_timer(20)
+            progressBar.reset_timer(90)
             progressBar.attackMode = False
             progressBar.add_xp(15)
 
