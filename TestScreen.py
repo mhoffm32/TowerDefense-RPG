@@ -60,6 +60,8 @@ while running:
         else:
             state = 1
 
+    gamePlayer_G.draw(surface)
+
     for event in events:
         if event.type == pygame.QUIT:
             running = False
@@ -68,23 +70,25 @@ while running:
                 p.reset_timer(180)
 
     if state == 1:
+        
         gamePlayer_G.update()
-        gamePlayer_G.draw(surface)
 
         for event in events:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
                     for p in pBar_group:
                         p.reset_timer(180)
-                        #gamePlayer.pet = p.pet_items['purple']
-
-        # for event in events:
-        # if event.type == pygame.KEYDOWN:
 
         render(events)
         homeUpdate()
 
     if state == 0:
+        for event in events:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    for p in pBar_group:
+                        p.paused = False
+
         render(events)
 
     time.sleep(0.05)
