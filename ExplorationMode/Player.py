@@ -229,7 +229,6 @@ class Player(Character):
 
         if self.hasPet():
             self.pet_img = self.get_pet_img()
-
             self.screen.blit(self.pet_img, self.rect.topright)
 
         super().update_img(self.image)
@@ -299,7 +298,7 @@ class Player(Character):
     def collectItem(self, item):
         self.progressBar.add_coin(item.moneyValue)
         self.progressBar.add_diamond(item.crystalValue)
-        self.progressBar.add_xp(item.xpValue)
+        self.progressBar.update_xp(item.xpValue)
 
     def customize(self):
         pygame.init()
@@ -375,11 +374,17 @@ class Player(Character):
             screen.blit(save_text, save_rect)
 
             pygame.draw.rect(screen, '#f1e3d0', light_skin)
+            pygame.draw.rect(screen, (0, 0, 0), light_skin, width=2)
             pygame.draw.rect(screen, '#9b7e64', medium_skin)
+            pygame.draw.rect(screen, (0, 0, 0), medium_skin, width=2)
             pygame.draw.rect(screen, '#4b3009', dark_skin)
+            pygame.draw.rect(screen, (0, 0, 0), dark_skin, width=2)
             pygame.draw.rect(screen, '#c0a648', blonde_hair)
+            pygame.draw.rect(screen, (0, 0, 0), blonde_hair, width=2)
             pygame.draw.rect(screen, '#7f580e', brown_hair)
+            pygame.draw.rect(screen, (0, 0, 0), brown_hair, width=2)
             pygame.draw.rect(screen, '#0f0b02', black_hair)
+            pygame.draw.rect(screen, (0, 0, 0), black_hair, width=2)
 
             button_surface = font.render("Finish", True, (255, 255, 255))
             button_rect = button_surface.get_rect()
@@ -447,7 +452,7 @@ class Player(Character):
             playerGroup.draw(screen)
             pygame.display.flip()
 
-        gamePlayer = Player(self.screen, self.progressBar, 100, 160)
+        gamePlayer = Player(self.screen, self.progressBar, 50, 70)
         gamePlayer.gender = self.gender
         gamePlayer.skin = self.skin
         gamePlayer.hair = self.hair

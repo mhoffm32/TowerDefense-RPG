@@ -6,10 +6,10 @@ pygame.init()
 
 
 class ShopMenu():
-    def __init__(self):
+    def __init__(self, progressBar):
 
         self.main_screen = pygame.display.set_mode((1100, 800))
-        self.pBar = ProgressBar(self.main_screen)
+        self.pBar = progressBar
 
         self.main = True
 
@@ -38,7 +38,6 @@ class ShopMenu():
         self.bow_img = pygame.image.load('Images/weapons/bow_arrow_sprite.png')
 
         self.coin_img = pygame.image.load('Images/coin.png')
-
         self.cannon_img = pygame.image.load(
             'Images/weapons/cannons_sprite_left.png')
         self.ballista_img = pygame.image.load(
@@ -125,6 +124,9 @@ class ShopMenu():
                 pygame.draw.rect(self.main_screen, (50, 70, 168), pets)
                 pygame.draw.rect(self.main_screen, (0, 0, 0), pets, width=2)
 
+                self.main_screen.blit(pygame.transform.scale(
+                    self.pikeman_img, (150, 150)), (td_upgrades.x+30, td_upgrades.y+10))
+
                 self.main_screen.blit(weapon_text, weapon_rect)
                 self.main_screen.blit(td_text, td_rect)
 
@@ -144,6 +146,9 @@ class ShopMenu():
                 store_rect = store_text.get_rect()
                 store_rect.center = (screenRectangle.centerx, 150)
                 self.main_screen.blit(store_text, store_rect)
+
+                self.main_screen.blit(pygame.transform.scale(
+                    self.bow_img, (150, 150)), (130, 250))
 
                 self.main_screen.blit(self.tower_img, (468, 200))
                 self.main_screen.blit(pygame.transform.scale(
@@ -258,17 +263,17 @@ class ShopMenu():
 
                         if pets.collidepoint(event.pos):
                             print("pets selected")
-                            time.sleep(0.05)
+
                             self.curr_screen = 'pets'
 
                         elif weapon_upgrades.collidepoint(event.pos):
                             print("weapons selected")
-                            time.sleep(0.05)
+
                             self.curr_screen = 'weapons'
                             #running = False
 
                         elif td_upgrades.collidepoint(event.pos):
-                            time.sleep(0.05)
+
                             self.curr_screen = 'troops'
 
                     elif self.curr_screen == 'pets':
@@ -336,22 +341,5 @@ class ShopMenu():
 
         return
 
-    def playerUpgrades(self):
-        return
-
-    def pets(self):
-        return
-
-    def weaponUpgrades(self):
-        return
-
-
-pygame.init()
-
-screen = pygame.display.set_mode((1100, 800))
-
-shop = ShopMenu()
-
-shop.mainMenu()
 
 pygame.quit()

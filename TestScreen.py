@@ -70,7 +70,7 @@ while running:
                 p.reset_timer(180)
 
     if state == 1:
-        
+
         gamePlayer_G.update()
 
         for event in events:
