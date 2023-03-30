@@ -2,13 +2,11 @@ import pygame
 import time
 from ExplorationMode.Player import Player
 from Item import Pet_item, TD_item
-from TowerDefenseMode import TowerDefenseModeController
 
-# includes coins, level, diamonds, clock/timer
-
-# add pause button
-
-# cutscenes, pause button, store
+# includes coins, level, diamonds, clock/timer,
+# link between updates in tower defense
+# links store items and game
+# keeps track of time for tower defense mode, and pause button
 
 
 class ProgressBar(pygame.sprite.Sprite):
@@ -21,6 +19,8 @@ class ProgressBar(pygame.sprite.Sprite):
         self.surface = surface
         self.paused = False
         self.pet = None
+        self.win = False
+        self.lose = False
 
         self.progressFill = (75, 148, 49)
 
@@ -82,7 +82,7 @@ class ProgressBar(pygame.sprite.Sprite):
 
         self.pause_msg = "pause"
         self.pause_text = self.font.render(self.pause_msg, True,
-                                           (255, 255, 255), (3, 73, 171))
+                                           (0, 0, 0), (3, 73, 171))
         self.pause_rect = self.pause_text.get_rect()
         self.pause_rect.center = (40, 25)
         self.bg_rect = pygame.Rect(0, 0, 60, 35)
@@ -90,7 +90,6 @@ class ProgressBar(pygame.sprite.Sprite):
         pygame.draw.rect(self.surface, (3, 73, 171),
                          self.bg_rect)
         self.surface.blit(self.pause_text, self.pause_rect)
-
         pygame.display.update()
 
     def purchase_td_upgrade(self, key):
@@ -113,6 +112,8 @@ class ProgressBar(pygame.sprite.Sprite):
             self.setMessage(["You don't have enough coins!"])
 
     def equip_pet_item(self, key):
+        # to buy a pet in the store and link it to the player sprite
+
         item = self.pet_items[key]
 
         if item.equipped:
@@ -120,7 +121,6 @@ class ProgressBar(pygame.sprite.Sprite):
                 self.pet_items[k].equipped = False
                 self.pet = None
         else:
-
             for k in self.pet_items:
                 self.pet_items[k].equipped = False
             item.equipped = True
@@ -154,6 +154,7 @@ class ProgressBar(pygame.sprite.Sprite):
         self.surface.blit(text, textRect)
 
     def update_xp(self, points=0):
+        # updates xp bar when points are added or lost
 
         fillRect = self.levelProgress_rect.copy()
         fillRect.width = float(
@@ -161,15 +162,21 @@ class ProgressBar(pygame.sprite.Sprite):
 
         self.xp += points
 
+        pygame.draw.rect(self.surface, self.progressFill,
+                         fillRect)
+        
         if self.xp >= 100:
-            pygame.draw.rect(self.surface, self.progressFill,
-                             fillRect)
-            self.setMessage(["win!"])
+            time.sleep(0.5)
+            self.win = True
+        elif self.xp <= 0:
+            time.sleep(0.5)
+            self.lose = True
 
         pygame.draw.rect(self.surface, self.progressFill,
                          fillRect)
 
     def reset_timer(self, seconds):
+        # for after attack mode and after pausing
         self.seconds = seconds
         self.time1 = time.time()
         self.time2 = self.time1+self.seconds
@@ -211,7 +218,6 @@ class ProgressBar(pygame.sprite.Sprite):
         self.surface.blit(text, textRect)
 
     def popUpMessage(self):
-
         # self.paused = True  # texts is an array
         width = 500
         height = 150
@@ -243,7 +249,6 @@ class ProgressBar(pygame.sprite.Sprite):
         self.player = player
 
     def messageBoolean(self):
-
         if(self.messageRequest):
             if(self.msgIndex < (self.messageCount)):
                 self.messageRequest = True
@@ -302,7 +307,7 @@ class ProgressBar(pygame.sprite.Sprite):
 
         # pause thing
         self.pause_text = self.font.render(self.pause_msg, True,
-                                           (255, 255, 255), (3, 73, 171))
+                                           (0, 0, 0), (3, 73, 171))
         self.pause_rect = self.pause_text.get_rect()
         self.pause_rect.center = (45, 25)
         self.bg_rect = pygame.Rect(0, 0, 70, 35)
