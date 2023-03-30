@@ -17,6 +17,7 @@ surface.fill((153, 204, 255))
 prog = ProgressBar.ProgressBar(surface)
 
 pBar_group = pygame.sprite.Group([prog])
+prog.reset_timer(180)
 
 
 # just to test what its like to pause with a moving background
@@ -62,6 +63,9 @@ while running:
     for event in events:
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.WINDOWSHOWN:
+            for p in pBar_group:
+                p.reset_timer(180)
 
     if state == 1:
         gamePlayer_G.update()
@@ -71,7 +75,7 @@ while running:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
                     for p in pBar_group:
-                        p.equip_pet_item('green')
+                        p.reset_timer(180)
                         #gamePlayer.pet = p.pet_items['purple']
 
         # for event in events:

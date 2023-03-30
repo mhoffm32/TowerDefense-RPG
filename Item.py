@@ -11,7 +11,7 @@ class Item():
         self.rect = pygame.Rect(0, 0, 1, 1)
 
         self.font = pygame.font.Font(
-            'ExplorationMode/Font/Enchanted Land.otf', 30)
+            'ExplorationMode/Font/Enchanted Land.otf', 27)
         self.font2 = pygame.font.Font(
             'ExplorationMode/Font/Enchanted Land.otf', 22)
 
@@ -37,9 +37,9 @@ class Item():
         purchase_text = self.font.render(text, True,
                                          (255, 255, 255), fill)
         purchase_rect = purchase_text.get_rect()
-        purchase_rect.center = (rect.centerx, rect.centery+50)
+        purchase_rect.center = (rect.centerx, rect.centery+40)
 
-        bg_rect = pygame.Rect(0, 0, 140, 40)
+        bg_rect = pygame.Rect(0, 0, 90, 35)
         bg_rect.center = purchase_rect.center
         pygame.draw.rect(surface, fill,
                          bg_rect)
@@ -56,12 +56,12 @@ class Pet_item(Item):
 
     def __init__(self, price, image_url):
         super().__init__(price, 'pet')
-        
+
         self.image = pygame.image.load(image_url)
 
         self.l_image = pygame.transform.scale(
             pygame.image.load(image_url), (60, 60))
-        
+
         self.r_image = pygame.transform.scale(pygame.transform.flip(
             pygame.image.load(image_url), True, False), (60, 60))
 
@@ -90,8 +90,9 @@ class Pet_item(Item):
         purchase_rect = purchase_text.get_rect()
         purchase_rect.center = (rect.centerx, rect.centery+50)
 
-        bg_rect = pygame.Rect(0, 0, 140, 40)
+        bg_rect = pygame.Rect(0, 0, 100, 35)
         bg_rect.center = purchase_rect.center
+
         pygame.draw.rect(surface, fill,
                          bg_rect)
         surface.blit(purchase_text, purchase_rect)
@@ -110,17 +111,30 @@ class TD_item(Item):
 
     def blitLabel(self, surface, x, y):
 
-        super().blitLabel(surface, x, y)
+        textSurf = self.font.render(
+            str(self.price), True, (0, 0, 0))
+        textrect = textSurf.get_rect()
+
+        if not self.purchased:
+            text = "Purchase"
+            fill = (28, 105, 24)
+        else:
+            fill = (37, 65, 148)
+            text = "Equipped"
+
+        purchase_text = self.font.render(text, True,
+                                         (255, 255, 255), fill)
+        purchase_rect = purchase_text.get_rect()
 
         outer = pygame.Rect(x, y-50, 200, 25)
 
-        innerW = (float(self.stat)/(self.stat+self.increase))*outer.width
+        innerW = (float(self.stat)/(self.oldStat+self.increase))*outer.width
         inner = pygame.Rect(x, outer.y, innerW, outer.height)
         outer.centerx = x
         inner.x = outer.x
 
         prevStat = pygame.font.SysFont('Times', 20).render(
-            str(self.stat), True, (0, 0, 0))
+            str(self.oldStat), True, (0, 0, 0))
         prevStatR = prevStat.get_rect()
         prevStatR.centery = outer.centery
         prevStatR.x = outer.x+5
@@ -135,6 +149,18 @@ class TD_item(Item):
         rect1 = text1.get_rect()
         rect1.center = (x, y-75)
 
+        textrect.center = (outer.right + 35, outer.centery)
+        purchase_rect.center = (outer.centerx, textrect.centery+40)
+
+        surface.blit(textSurf, textrect)
+        surface.blit(
+            pygame.transform.scale((self.coin_img), (37, 37)), (textrect.x - 30, textrect.y-5))
+
+        bg_rect = pygame.Rect(0, 0, 100, 35)
+        bg_rect.center = purchase_rect.center
+        pygame.draw.rect(surface, fill, bg_rect)
+        surface.blit(purchase_text, purchase_rect)
+
         pygame.draw.rect(surface, (51, 153, 255), outer)
         pygame.draw.rect(surface, (0, 89, 179), inner)
         pygame.draw.rect(surface, (0, 0, 0), outer, width=2)
@@ -142,3 +168,5 @@ class TD_item(Item):
         surface.blit(prevStat, prevStatR)
         surface.blit(increaseStat, increaseStatR)
         surface.blit(text1, rect1)
+
+        self.rect = bg_rect
