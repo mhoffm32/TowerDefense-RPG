@@ -5,16 +5,18 @@ from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.SubArea import SubArea
 import ProgressBar
 from TowerDefenseMode.TowerDefenseModeController import TowerDefenseModeController
+from TestBadEndingCutscene import BadCutscene
+from TestGoodEndingCutscene import GoodCutscene
 
 pygame.init()
-
 screen = pygame.display.set_mode((1000, 700))
 screenRectangle = screen.get_rect()
 
 # Progress Bar Stuff
 progressBar = ProgressBar.ProgressBar(screen)
 pBar_group = pygame.sprite.Group(progressBar)
-level = Level(screen, progressBar)
+
+#level = Level(screen, progressBar)
 
 
 def render(events):
@@ -26,17 +28,28 @@ def render(events):
 
 state = 1  # paused is 0
 
-gameMode = 'explore'
+#gameMode = 'explore'
 
-tdController = TowerDefenseModeController(screen,progressBar)
+temp_player = Player(screen, progressBar, 400, 600)
+game_player = temp_player.customize()
+
+game_playerG = pygame.sprite.Group([game_player])
+
+level = Level(screen, progressBar, game_player)
+store = SubArea(6, screen, progressBar, game_player)
+
+tdController = TowerDefenseModeController(screen, progressBar)
 bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
 
 wins = 0
 losses = 0
-
 running = True
 
-progressBar.reset_timer(30)
+win = False
+lose = False
+
+progressBar.reset_timer(90)
+gameMode = "store"
 
 while(running):
 
@@ -47,16 +60,17 @@ while(running):
             running = False
 
     for p in pBar_group:
+        if p.win:
+            win = True
+            running = False
+        elif p.lose:
+            lose = True
+            running = False
+
         if p.paused:
             state = 0
         else:
             state = 1
-
-    if state == 1:
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                for p in pBar_group:
-                    p.add_xp(5)
 
     if gameMode == 'explore':
         level.update()
@@ -80,18 +94,32 @@ while(running):
             gameMode = 'explore'
             progressBar.reset_timer(20)
             progressBar.attackMode = False
-            progressBar.add_xp(-15)
+            progressBar.update_xp(-15)
             losses += 1
-            
+
         elif tdController.checkWon():
             print("Wave Defeated")
             gameMode = 'explore'
-            progressBar.reset_timer(20)
+            progressBar.reset_timer(90)
             progressBar.attackMode = False
-            progressBar.add_xp(15)
+            progressBar.update_xp(15)
             wins += 1
 
         pygame.display.flip()
         screen.blit(bg, (0, 0))
+
+    elif gameMode == "store":
+        store.update()
+        pBar_group.update(events)
+        pygame.display.flip()
+        screen.fill((0, 0, 0))
+
+
+if lose:
+    BadCutscene().run()
+
+elif win:
+    GoodCutscene().run()
+
 
 pygame.quit()

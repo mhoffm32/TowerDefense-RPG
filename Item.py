@@ -60,10 +60,10 @@ class Pet_item(Item):
         self.image = pygame.image.load(image_url)
 
         self.l_image = pygame.transform.scale(
-            pygame.image.load(image_url), (60, 60))
+            pygame.image.load(image_url), (35, 35))
 
         self.r_image = pygame.transform.scale(pygame.transform.flip(
-            pygame.image.load(image_url), True, False), (60, 60))
+            pygame.image.load(image_url), True, False), (35, 35))
 
     def blitLabel(self, surface, x, y):
 
