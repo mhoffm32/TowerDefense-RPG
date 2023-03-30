@@ -1,4 +1,5 @@
 import pygame
+import time
 from ExplorationMode.Player import Player
 from Item import Pet_item, TD_item
 from TowerDefenseMode import TowerDefenseModeController
@@ -20,6 +21,11 @@ class ProgressBar(pygame.sprite.Sprite):
         self.timeRemaining = self.seconds
         self.prevTime = self.timeRemaining
         self.clock = pygame.time.Clock()
+
+        # time stuff
+        self.time1 = time.time()
+        self.time2 = self.time1+self.seconds
+
         self.clockImg_index = 1
         self.messageRequest = False
         self.messageCount = 0
@@ -34,13 +40,16 @@ class ProgressBar(pygame.sprite.Sprite):
 
         #self.defenderStats = tdcontroller.defenderStats
 
-        self.td_items = {'archerDamage': TD_item(20, "Archer Damage", 40, 60), 'archerAttackSpeed': TD_item(30, "Archer Attack Speed", 1000, 2000),
+        self.td_items = {'archerDamage': TD_item(20, "Archer Damage", 40, 60),
+                         'archerAttackSpeed': TD_item(30, "Archer Attack Speed", 1000, 2000),
                          'pikemanDamage': TD_item(30, "Pikeman Damage", 30, 90),
                          'pikemanAttackSpeed': TD_item(30, "Pikeman Attack Speed", 1000, 2000),
                          'ballistaAttackSpeed': TD_item(30, "Ballista Attack Speed", 2000, 5000),
                          'ballistaProjectileHealth': TD_item(30, "Ballista Projectile Health", 50, 120),
-                         'towerHealth': TD_item(20, "Tower Health", 300, 700), 'cannonAttackSpeed': TD_item(20, "Cannon Attack Speed", 2000, 6000),
-                         'cannonDamage': TD_item(20, "Cannon Damage", 100, 200), 'cannonRange': TD_item(20, "Cannon Range", 100, 200)}
+                         'towerHealth': TD_item(20, "Tower Health", 300, 700),
+                         'cannonAttackSpeed': TD_item(20, "Cannon Attack Speed", 2000, 6000),
+                         'cannonDamage': TD_item(20, "Cannon Damage", 100, 200),
+                         'cannonRange': TD_item(20, "Cannon Range", 100, 200)}
 
         self.defenderStats = {}
         for k in self.td_items:
@@ -152,7 +161,8 @@ class ProgressBar(pygame.sprite.Sprite):
 
     def reset_timer(self, seconds):
         self.seconds = seconds
-        self.startTime = pygame.time.get_ticks()/1000
+        self.time1 = time.time()
+        self.time2 = self.time1+self.seconds
 
     def add_coin(self, amount=1):
         self.coin_count += amount
@@ -238,17 +248,10 @@ class ProgressBar(pygame.sprite.Sprite):
             return False
 
     def updateTime(self):
-        elapsedTime = pygame.time.get_ticks()/1000 - self.startTime
-        if not self.paused:
-            self.timeRemaining = self.seconds - elapsedTime + self.timePaused
-            self.deltaT = self.seconds-self.timeRemaining
-            self.prevTime = self.timeRemaining
-        else:
-            self.timePaused = elapsedTime - self.deltaT
-            self.timeRemaining = self.prevTime
 
-        if self.timeRemaining < 0:
-            self.attackMode = True
+        self.timeRemaining = self.time2-time.time()
+
+        # Pause needs to be implemented
 
     def update(self, events):
 
