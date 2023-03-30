@@ -28,9 +28,15 @@ state = 1  # paused is 0
 
 gameMode = 'explore'
 
-tdController = TowerDefenseModeController(screen, progressBar)
+
+
+tdController = TowerDefenseModeController(screen,progressBar)
 bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
 
+wins = 0
+losses = 0
+
+running = True
 
 running = True
 progressBar.reset_timer(30)
@@ -78,12 +84,15 @@ while(running):
             progressBar.reset_timer(20)
             progressBar.attackMode = False
             progressBar.update_xp(-15)
+            losses += 1
+            
         elif tdController.checkWon():
             print("Wave Defeated")
             gameMode = 'explore'
             progressBar.reset_timer(90)
             progressBar.attackMode = False
-            progressBar.add_xp(15)
+            progressBar.update_xp(15)
+            wins += 1
 
         pygame.display.flip()
         screen.blit(bg, (0, 0))
