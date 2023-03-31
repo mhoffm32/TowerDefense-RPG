@@ -18,7 +18,6 @@ backgrounds = {
     # more room backgrounds here
 }
 
-
 class SubArea:
     def __init__(self, roomNumber, screen, progressBar, player):
         print("Initialize Sub Area")
@@ -294,11 +293,11 @@ class SubArea:
                 self.generateRoom(door.nextLevelNumber)
                 self.player.setPosition(door.newRoomSpawnLocation)
                 break
-        # npc collisions
-        npcCollisionDictionary = pygame.sprite.groupcollide(
-            self.npcGroup, self.playerGroup, False, False)
-        for npc in npcCollisionDictionary:
-            npc.interacting = True
+            # npc collisions
+            npcCollisionDictionary = pygame.sprite.groupcollide(
+                self.npcGroup, self.playerGroup, False, False)
+            for npc in npcCollisionDictionary:
+                npc.interacting = True
 
         # Check Collision with Wall
         wallCollisionDictionary = pygame.sprite.groupcollide(
@@ -330,13 +329,12 @@ class SubArea:
     def generateNPCs(self):
         npcText = ["Hello your Majesty! Welcome to the castle. There is something you need to know! You know of The Tree correct?", "Legend states that long ago there was the ability to destroy it. The power was stored within a powerful crystal that",
                    "was said to be destroyed many centuries ago. However I believe the fragments still exist and when put back together, will", "have the power to once again destroy The Tree! Here, you can have my crystal fragment. I collected this a while ago.",  "Maybe you can rebuild the crystal. Although I hope you never need to use it."]
-        self.npcGroup.add(FriendlyCharacter(
-            100, 550, self.screen, npcText, self.player, 0, 1, 5, 0, 'Images/npc/npc1.png'))
+        self.npcGroup.add(FriendlyCharacter(100, 550, self.screen, npcText, self.player, 0, 1, 5, 0, 'Images/npc/npc1.png'))
 
         shopkeeperText = ["Hello your Highness. Please purchase an upgrade for the tower defense here in this shop!",
                           "Also, I found this crystal on the ground. You can have it! Thanks for visiting."]
         shopKeeper = ShopKeeper(350, 150, self.screen, shopkeeperText,
-                                self.player, 0, 1, 5, 6, 'Images/npc/shopkeeper.png', self.progressBar)
+                                self.player, 0, 1, 0, 6, 'Images/npc/shopkeeper.png', self.progressBar)
         self.npcGroup.add(shopKeeper)
 
         defaultGuardText = ["Hope you are staying out of trouble your Highness.",
@@ -347,18 +345,15 @@ class SubArea:
                           defaultGuardText[2]], self.player, 0, 0, 0, 0, 'Images/npc/castle_guard2.png'))
 
         entranceGuardText = ["Welcome back to the castle your Highness.",
-                             "Please come in your Majesty! It is not safe outside the castle."]
+                        "Please come in your Majesty! It is not safe outside the castle."]
         self.npcGroup.add(FriendlyCharacter(340, 120, self.screen, [
-                          entranceGuardText[1]], self.player, 0, 0, 0, 1, 'Images/npc/castle_guard3.png'))
+                        entranceGuardText[1]], self.player, 0, 0, 0, 1, 'Images/npc/castle_guard3.png'))
         self.npcGroup.add(FriendlyCharacter(590, 120, self.screen, [
-                          entranceGuardText[0]], self.player, 0, 0, 0, 1, 'Images/npc/castle_guard1.png'))
+                        entranceGuardText[0]], self.player, 0, 0, 0, 1, 'Images/npc/castle_guard1.png'))
 
-        bedroomGuardText = [
-            "Past these doors are your bedroom chambers, your Highness.", "Welcome back your Highness."]
-        self.npcGroup.add(FriendlyCharacter(340, 120, self.screen, [
-                          bedroomGuardText[0]], self.player, 0, 0, 0, 3, 'Images/npc/castle_guard2.png'))
-        self.npcGroup.add(FriendlyCharacter(590, 120, self.screen, [
-                          bedroomGuardText[1]], self.player, 0, 0, 0, 3, 'Images/npc/castle_guard3.png'))
+        bedroomGuardText = ["Past these doors are your bedroom chambers, your Highness.", "Welcome back your Highness."]
+        self.npcGroup.add(FriendlyCharacter(340, 120, self.screen, [bedroomGuardText[0]], self.player, 0, 0, 0, 3, 'Images/npc/castle_guard2.png'))
+        self.npcGroup.add(FriendlyCharacter(590, 120, self.screen, [bedroomGuardText[1]], self.player, 0, 0, 0, 3, 'Images/npc/castle_guard3.png'))
 
         libraryGuardText = [
             "Welcome to the Library, your Majesty. Feel free to look around."]

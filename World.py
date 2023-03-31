@@ -5,6 +5,7 @@ from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.SubArea import SubArea
 import ProgressBar
 from TowerDefenseMode.TowerDefenseModeController import TowerDefenseModeController
+from TestIntroCutscene import CutScene
 from TestBadEndingCutscene import BadCutscene
 from TestGoodEndingCutscene import GoodCutscene
 
@@ -16,9 +17,6 @@ screenRectangle = screen.get_rect()
 progressBar = ProgressBar.ProgressBar(screen)
 pBar_group = pygame.sprite.Group(progressBar)
 
-#level = Level(screen, progressBar)
-
-
 def render(events):
     pBar_group.update(events)
 
@@ -29,27 +27,27 @@ def render(events):
 state = 1  # paused is 0
 
 #gameMode = 'explore'
+introScene = CutScene(screen)
+introScene.runScene()
 
 temp_player = Player(screen, progressBar, 400, 600)
 game_player = temp_player.customize()
 
 game_playerG = pygame.sprite.Group([game_player])
 
-level = Level(screen, progressBar, game_player)
 store = SubArea(6, screen, progressBar, game_player)
+level = Level(screen, progressBar, game_player)
 
 tdController = TowerDefenseModeController(screen, progressBar)
 bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
 
-wins = 0
-losses = 0
-running = True
-
 win = False
 lose = False
 
-progressBar.reset_timer(90)
-gameMode = "store"
+progressBar.reset_timer(30)
+gameMode = "explore"
+
+running = True
 
 while(running):
 
@@ -92,18 +90,16 @@ while(running):
         if tdController.checkLost():
             print("Wave Lost")
             gameMode = 'explore'
-            progressBar.reset_timer(20)
+            progressBar.reset_timer(10)
             progressBar.attackMode = False
-            progressBar.update_xp(-15)
-            losses += 1
+            progressBar.update_xp(-5)
 
         elif tdController.checkWon():
             print("Wave Defeated")
             gameMode = 'explore'
-            progressBar.reset_timer(90)
+            progressBar.reset_timer(10)
             progressBar.attackMode = False
-            progressBar.update_xp(15)
-            wins += 1
+            progressBar.update_xp(5)
 
         pygame.display.flip()
         screen.blit(bg, (0, 0))
@@ -114,12 +110,10 @@ while(running):
         pygame.display.flip()
         screen.fill((0, 0, 0))
 
-
 if lose:
     BadCutscene().run()
 
 elif win:
     GoodCutscene().run()
-
 
 pygame.quit()
