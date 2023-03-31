@@ -29,6 +29,9 @@ class Player(Character):
 
         #print(self.rect.width, self.rect.height)
 
+    def setRoom(self, room):
+        self.room = room
+
     def set_sprite_size(self, w, h):
 
         self.rect.width = w
@@ -279,16 +282,15 @@ class Player(Character):
 
         # if the result of the move puts the player in a wall: revert movement
 
-        if(self.room):
-            if self.room.checkCollision():
-                if(keysPressed[pygame.K_LEFT]):
-                    self.rect.x += self.speed
-                if(keysPressed[pygame.K_RIGHT]):
-                    self.rect.x -= self.speed
-                if(keysPressed[pygame.K_UP]):
-                    self.rect.y += self.speed
-                if(keysPressed[pygame.K_DOWN]):
-                    self.rect.y -= self.speed
+        if self.room.checkCollision():
+            if(keysPressed[pygame.K_LEFT]):
+                self.rect.x += self.speed
+            if(keysPressed[pygame.K_RIGHT]):
+                self.rect.x -= self.speed
+            if(keysPressed[pygame.K_UP]):
+                self.rect.y += self.speed
+            if(keysPressed[pygame.K_DOWN]):
+                self.rect.y -= self.speed
 
     def setAttributes(self, gender, skin, hair):
         self.gender = gender
