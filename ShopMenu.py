@@ -8,7 +8,7 @@ pygame.init()
 class ShopMenu():
     def __init__(self, progressBar):
 
-        self.main_screen = pygame.display.set_mode((1100, 800))
+        self.main_screen = pygame.display.set_mode((1000, 700))
         self.pBar = progressBar
 
         self.main = True
