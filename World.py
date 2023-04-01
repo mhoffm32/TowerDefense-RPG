@@ -8,6 +8,7 @@ from TowerDefenseMode.TowerDefenseModeController import TowerDefenseModeControll
 from TestIntroCutscene import CutScene
 from TestBadEndingCutscene import BadCutscene
 from TestGoodEndingCutscene import GoodCutscene
+from Instructions import Instructions
 
 pygame.init()
 screen = pygame.display.set_mode((1000, 700))
@@ -26,6 +27,8 @@ def render(events):
 
 state = 1  # paused is 0
 
+instructionScene = Instructions(screen)
+instructionScene.runScene()
 #gameMode = 'explore'
 introScene = CutScene(screen)
 introScene.runScene()

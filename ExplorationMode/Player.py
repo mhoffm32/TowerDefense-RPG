@@ -393,10 +393,6 @@ class Player(Character):
             button_rect.x = 700
             button_rect.y = 700
 
-        '''self.gender = 'male'
-        hair = 'blonde'
-        skin = 'light'''
-
         # Main game loop
         running = True
         while running:
