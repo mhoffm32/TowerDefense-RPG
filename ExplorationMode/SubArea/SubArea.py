@@ -34,6 +34,7 @@ class SubArea:
 
         self.playerGroup = pygame.sprite.Group()
         self.player = player  # Player(screen, progressBar, 50, 70, self)
+        self.player.setRoom(self)
         self.playerGroup.add(self.player)
 
         self.generateItems()
