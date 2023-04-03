@@ -5,7 +5,6 @@ from ShopMenu import ShopMenu
 
 pygame.init()
 
-
 class FriendlyCharacter(Character):
     def __init__(self, x, y, screen, text, player, moneyValue, crystalValue, xpValue, room, img_path):
         super().__init__(x, y, img_path)

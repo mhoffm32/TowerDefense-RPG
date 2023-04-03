@@ -29,6 +29,9 @@ class Player(Character):
 
         #print(self.rect.width, self.rect.height)
 
+    def setRoom(self, room):
+        self.room = room
+
     def set_sprite_size(self, w, h):
 
         self.rect.width = w
@@ -279,16 +282,15 @@ class Player(Character):
 
         # if the result of the move puts the player in a wall: revert movement
 
-        if(self.room):
-            if self.room.checkCollision():
-                if(keysPressed[pygame.K_LEFT]):
-                    self.rect.x += self.speed
-                if(keysPressed[pygame.K_RIGHT]):
-                    self.rect.x -= self.speed
-                if(keysPressed[pygame.K_UP]):
-                    self.rect.y += self.speed
-                if(keysPressed[pygame.K_DOWN]):
-                    self.rect.y -= self.speed
+        if self.room.checkCollision():
+            if(keysPressed[pygame.K_LEFT]):
+                self.rect.x += self.speed
+            if(keysPressed[pygame.K_RIGHT]):
+                self.rect.x -= self.speed
+            if(keysPressed[pygame.K_UP]):
+                self.rect.y += self.speed
+            if(keysPressed[pygame.K_DOWN]):
+                self.rect.y -= self.speed
 
     def setAttributes(self, gender, skin, hair):
         self.gender = gender
@@ -303,7 +305,7 @@ class Player(Character):
     def customize(self):
         pygame.init()
 
-        screen = pygame.display.set_mode((1100, 800))
+        screen = pygame.display.set_mode((1000, 700))
         screenRectangle = screen.get_rect()
 
         bg_color = ('#639c7a')
@@ -391,10 +393,6 @@ class Player(Character):
             button_rect.x = 700
             button_rect.y = 700
 
-        '''self.gender = 'male'
-        hair = 'blonde'
-        skin = 'light'''
-
         # Main game loop
         running = True
         while running:
@@ -459,7 +457,6 @@ class Player(Character):
         self.progressBar.set_player(gamePlayer)
         return gamePlayer
         # Quit Pygame
-
 
 pygame.init()
 
