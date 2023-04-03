@@ -17,6 +17,7 @@ class Instructions():
         font = pygame.font.SysFont('Times', 20)
         button_x = 70
         button_y = 70
+
         button_surface = font.render("Click here to Continue",True,(255,255,255))
         button_rect = button_surface.get_rect()
         button_rect.x = button_x

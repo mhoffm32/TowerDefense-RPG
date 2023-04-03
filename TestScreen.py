@@ -2,6 +2,7 @@ import pygame
 import time
 
 from ExplorationMode.Player import Player
+from TowerDefenseMode.TowerDefenseModeController import TowerDefenseModeController
 import ProgressBar
 from TestIntroCutscene import CutScene
 
@@ -19,6 +20,7 @@ prog = ProgressBar.ProgressBar(surface)
 pBar_group = pygame.sprite.Group([prog])
 prog.reset_timer(180)
 
+td_control = TowerDefenseModeController(surface, prog)
 
 # just to test what its like to pause with a moving background
 myRect = pygame.Rect(300, 400, 300, 300)
@@ -77,7 +79,9 @@ while running:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
                     for p in pBar_group:
-                        p.reset_timer(180)
+                        p.purchase_td_upgrade('archerDamage')
+                        for item in td_control.defenderStats.items():
+                            print(item)
 
         render(events)
         homeUpdate()
@@ -87,7 +91,7 @@ while running:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
                     for p in pBar_group:
-                        p.paused = False
+                        p.purchase_td_upgrade('archerDamage')
 
         render(events)
 
