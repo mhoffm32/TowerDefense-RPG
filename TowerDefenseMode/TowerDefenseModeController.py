@@ -7,6 +7,7 @@ from TowerDefenseMode.Enemy3 import Enemy3
 from TowerDefenseMode.Enemy2 import Enemy2
 from TowerDefenseMode.Enemy import Enemy
 from TowerDefenseMode.Enemy1 import Enemy1
+import ProgressBar
 import pygame
 import sys
 import random
@@ -15,16 +16,18 @@ sys.path.append('../se2250groupproject')
 
 
 class TowerDefenseModeController:
-    def __init__(self, screen,progressBar):
+    def __init__(self, screen, progressBar):
         self.screen = screen
         self.waveNumber = 1
 
         self.towerGroup = pygame.sprite.Group()
         self.enemyGroup = pygame.sprite.Group()
         self.defenderGroup = pygame.sprite.Group()
+        self.progressBar = progressBar
         self.defenderStats = progressBar.defenderStats
-        
+
     def update(self):
+        self.defenderStats = self.progressBar.defenderStats
         self.towerGroup.draw(self.screen)
         self.enemyGroup.draw(self.screen)
         self.defenderGroup.draw(self.screen)
@@ -56,21 +59,25 @@ class TowerDefenseModeController:
         self.towerGroup.add(self.tower)
 
         for i in range(0, numOfPikeman):
+            print(self.defenderStats['pikemanDamage'])
             self.defenderGroup.add(Pikeman(self.screen, self, slotNumber,
                                    self.defenderStats['pikemanDamage'], self.defenderStats['pikemanAttackSpeed']))
             slotNumber += 1
 
         for i in range(0, numOfArchers):
+            print(self.defenderStats['archerDamage'])
             self.defenderGroup.add(Archer(self, self.screen, slotNumber,
                                    self.defenderStats['archerDamage'], self.defenderStats['archerAttackSpeed']))
             slotNumber += 1
 
         for i in range(0, numOfBallista):
+            print(self.defenderStats['ballistaAttackSpeed'])
             self.defenderGroup.add(Ballista(self, self.screen, slotNumber,
                                    self.defenderStats['ballistaAttackSpeed'], self.defenderStats['ballistaProjectileHealth']))
             slotNumber += 1
 
         for i in range(0, numOfCannon):
+            print(self.defenderStats['cannonDamage'])
             self.defenderGroup.add(Cannon(self, self.screen, slotNumber,
                                    self.defenderStats['cannonDamage'], self.defenderStats['cannonAttackSpeed'], self.defenderStats['cannonRange']))
             slotNumber += 1

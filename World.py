@@ -48,8 +48,10 @@ running = True
 win = False
 lose = False
 
-progressBar.reset_timer(90)
-gameMode = "store"
+
+
+progressBar.reset_timer(10)
+gameMode = "explore"
 
 while(running):
 
@@ -79,9 +81,8 @@ while(running):
         if progressBar.attackMode:
             print("Entering TD Mode")
             gameMode = 'tdMode'
-            defenderStats = {'archerDamage': 60, 'archerAttackSpeed': 2000, 'pikemanDamage': 90, 'pikemanAttackSpeed': 2000, 'ballistaAttackSpeed': 5000,
-                             'ballistaProjectileHealth': 120, 'towerHealth': 700, 'cannonAttackSpeed': 6000, 'cannonDamage': 200, 'cannonRange': 200}
             tdController.generateDefenders(0, 0, 0, 20)
+            
             tdController.generateWave()
 
         pygame.display.flip()
@@ -113,6 +114,12 @@ while(running):
         pBar_group.update(events)
         pygame.display.flip()
         screen.fill((0, 0, 0))
+        for event in events:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    for p in pBar_group:
+                        p.attackMode = True
+                        gameMode = 'explore'
 
 
 if lose:
