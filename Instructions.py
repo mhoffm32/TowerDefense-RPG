@@ -15,8 +15,9 @@ class Instructions():
         self.screen.blit(bg,(0,0))
 
         font = pygame.font.SysFont('Times', 20)
-        button_x = 500
-        button_y = 500
+        button_x = 70
+        button_y = 70
+
         button_surface = font.render("Click here to Continue",True,(255,255,255))
         button_rect = button_surface.get_rect()
         button_rect.x = button_x
