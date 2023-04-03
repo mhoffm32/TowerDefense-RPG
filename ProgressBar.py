@@ -53,8 +53,6 @@ class ProgressBar(pygame.sprite.Sprite):
         self.pet_items = {'red': Pet_item(60, 'Images/dragons/reddragon.png'),
                           'green': Pet_item(40, 'Images/dragons/greendragon.png'), 'purple': Pet_item(80, 'Images/dragons/purpledragon.png')}
 
-        self.tower_defenses = {}
-
         self.font = pygame.font.Font(
             'ExplorationMode/Font/Enchanted Land.otf', 28)
         self.attackMode = False
@@ -100,6 +98,7 @@ class ProgressBar(pygame.sprite.Sprite):
                 item.equipped = True
                 item.stat += item.increase
                 self.coin_count -= item.price
+                self.defenderStats[key] = item.stat
             else:
                 self.setMessage(["You don't have enough coins!"])
 
@@ -164,7 +163,7 @@ class ProgressBar(pygame.sprite.Sprite):
 
         pygame.draw.rect(self.surface, self.progressFill,
                          fillRect)
-        
+
         if self.xp >= 100:
             time.sleep(0.5)
             self.win = True
