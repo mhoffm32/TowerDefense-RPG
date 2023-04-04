@@ -189,16 +189,16 @@ class ShopMenu():
                     self.cannon_img, (300, 300)), (140, 125))
 
                 self.td_items['ballistaProjectileHealth'].blitLabel(
-                    self.main_screen, 780, 580)
+                    self.main_screen, 780, 550)
                 self.td_items['ballistaAttackSpeed'].blitLabel(
-                    self.main_screen, 780, 450)
+                    self.main_screen, 780, 420)
 
                 self.td_items['cannonAttackSpeed'].blitLabel(
-                    self.main_screen, 320, 450)
+                    self.main_screen, 320, 420)
                 self.td_items['cannonDamage'].blitLabel(
-                    self.main_screen, 320, 580)
+                    self.main_screen, 320, 550)
                 self.td_items['cannonRange'].blitLabel(
-                    self.main_screen, 320, 710)
+                    self.main_screen, 320, 680)
 
                 pygame.draw.rect(self.main_screen, (204, 51, 0), bg_rect)
                 self.main_screen.blit(exit_text, exit_rect)

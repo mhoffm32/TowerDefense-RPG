@@ -9,6 +9,7 @@ from TestIntroCutscene import CutScene
 from TestBadEndingCutscene import BadCutscene
 from TestGoodEndingCutscene import GoodCutscene
 from Instructions import Instructions
+import random
 
 pygame.init()
 screen = pygame.display.set_mode((1000, 700))
@@ -23,7 +24,6 @@ def render(events):
 
     pygame.display.flip()
     pygame.display.update()
-
 
 state = 1  # paused is 0
 
@@ -47,8 +47,7 @@ bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
 win = False
 lose = False
 
-
-progressBar.reset_timer(30)
+progressBar.reset_timer(10)
 gameMode = "explore"
 
 running = True
@@ -82,8 +81,7 @@ while(running):
         if progressBar.attackMode:
             print("Entering TD Mode")
             gameMode = 'tdMode'
-            tdController.generateDefenders(0, 0, 0, 20)
-            
+            tdController.generateDefenders(random.randint(1,3), random.randint(1,2), random.randint(1,4), random.randint(10,15))
             tdController.generateWave()
 
         pygame.display.flip()
@@ -96,14 +94,14 @@ while(running):
             gameMode = 'explore'
             progressBar.reset_timer(10)
             progressBar.attackMode = False
-            progressBar.update_xp(-5)
+            progressBar.update_xp(-10)
 
         elif tdController.checkWon():
             print("Wave Defeated")
             gameMode = 'explore'
             progressBar.reset_timer(10)
             progressBar.attackMode = False
-            progressBar.update_xp(5)
+            progressBar.update_xp(10)
 
         pygame.display.flip()
         screen.blit(bg, (0, 0))
