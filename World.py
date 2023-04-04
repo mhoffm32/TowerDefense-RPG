@@ -1,13 +1,13 @@
 from ExplorationMode.Level import Level
-import TowerDefenseMode.Exterior as Exterior
 import pygame
 from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.SubArea import SubArea
 import ProgressBar
 from TowerDefenseMode.TowerDefenseModeController import TowerDefenseModeController
 from TestIntroCutscene import CutScene
-from TestBadEndingCutscene import BadCutscene
-from TestGoodEndingCutscene import GoodCutscene
+from BadEndingCutscene import BadCutscene
+from GoodEndingCutscene import GoodCutscene
+from SecretEndingCutscene import SecretCutscene
 from Instructions import Instructions
 import random
 
@@ -29,7 +29,6 @@ state = 1  # paused is 0
 
 instructionScene = Instructions(screen)
 instructionScene.runScene()
-#gameMode = 'explore'
 introScene = CutScene(screen)
 introScene.runScene()
 
@@ -46,12 +45,12 @@ bg = pygame.image.load('Images/towerDefense/td_background.png').convert()
 
 win = False
 lose = False
+secret = False
 
-progressBar.reset_timer(10)
+progressBar.reset_timer(60)
 gameMode = "explore"
 
 running = True
-
 
 while(running):
 
@@ -67,6 +66,9 @@ while(running):
             running = False
         elif p.lose:
             lose = True
+            running = False
+        elif p.secret:
+            secret = True
             running = False
 
         if p.paused:
@@ -92,14 +94,14 @@ while(running):
         if tdController.checkLost():
             print("Wave Lost")
             gameMode = 'explore'
-            progressBar.reset_timer(10)
+            progressBar.reset_timer(60)
             progressBar.attackMode = False
             progressBar.update_xp(-10)
 
         elif tdController.checkWon():
             print("Wave Defeated")
             gameMode = 'explore'
-            progressBar.reset_timer(10)
+            progressBar.reset_timer(60)
             progressBar.attackMode = False
             progressBar.update_xp(10)
 
@@ -120,8 +122,9 @@ while(running):
 
 if lose:
     BadCutscene().run()
-
 elif win:
     GoodCutscene().run()
+elif secret:
+    SecretCutscene().run()
 
 pygame.quit()

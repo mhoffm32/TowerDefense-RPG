@@ -1,7 +1,7 @@
 import pygame
-from Character import Character
 import sys
 import time
+from Character import Character
 
 sys.path.append('../groupproject-team-99')
 

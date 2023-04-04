@@ -21,6 +21,7 @@ class ProgressBar(pygame.sprite.Sprite):
         self.pet = None
         self.win = False
         self.lose = False
+        self.secret = False
 
         self.progressFill = (75, 148, 49)
 
@@ -170,6 +171,9 @@ class ProgressBar(pygame.sprite.Sprite):
         elif self.xp <= 0:
             time.sleep(0.5)
             self.lose = True
+        elif self.diamond_count == 9:
+            time.sleep(0.5)
+            self.secret = True
 
         pygame.draw.rect(self.surface, self.progressFill,
                          fillRect)
@@ -192,7 +196,7 @@ class ProgressBar(pygame.sprite.Sprite):
 
     def updateDiamondText(self):
         text = self.font.render(
-            str(self.diamond_count) + "/6", True, (0, 0, 0))
+            str(self.diamond_count) + "/9", True, (0, 0, 0))
         textRect = text.get_rect()
         textRect.center = (self.surface.get_width()/3 +
                            self.diamond_img.get_width()-3, 25)

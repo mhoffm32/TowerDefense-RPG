@@ -1,5 +1,5 @@
-from GameObject import GameObject
 import pygame
+from GameObject import GameObject
 
 class Item(GameObject):
     def __init__(self, moneyValue, crystalValue,xpValue, x, y, room, imgPath):
