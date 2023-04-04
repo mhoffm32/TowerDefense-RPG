@@ -1,9 +1,8 @@
-
 import pygame
 
 pygame.init()
 
-class GoodCutscene:
+class SecretCutscene:
     
     def __init__(self) -> None:
         pass
@@ -13,12 +12,13 @@ class GoodCutscene:
         screen = pygame.display.set_mode((1000, 700))
         screenRectangle = screen.get_rect()
 
-        pygame.display.set_caption("Intro Cutscene")
+        pygame.display.set_caption("Secret Cutscene")
         font = pygame.font.Font('ExplorationMode/Font/Enchanted Land.otf', 40)
         text_boxes = [
-            "Congratulations! You have successfully defended the castle!",
-            "The Tree of Immortality is now safe for yet another day, and the kingdom may live peacefully.",
-            "The End! (Ending 1/3)"
+            "You have found all the secret crystal shards! The shards begin to form together in your hands.",
+            "This magical crystal is the only thing capable of destroying the Tree of Immortality...",
+            "You choose to destroy the tree using the crystal, ending the 100 year war over the Tree's mystical properties, and putting the world at peace.",
+            "The End! (Ending 3/3)"
         ]
 
         text_box_x = 100
@@ -64,7 +64,3 @@ class GoodCutscene:
                         pygame.quit()
                     elif event.type == pygame.MOUSEBUTTONDOWN and button_rect.collidepoint(event.pos):
                         clicked = True
-                        
-            
-                        
-                    

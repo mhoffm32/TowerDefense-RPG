@@ -1,6 +1,5 @@
-from ExplorationMode.SubArea.Obstacle import Obstacle
 import pygame
-
+from ExplorationMode.SubArea.Obstacle import Obstacle
 
 class Door(Obstacle):
     def __init__(self, x, y, imgPath, nextLevelNumber, newRoomSpawnLocation):

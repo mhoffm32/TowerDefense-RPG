@@ -1,23 +1,23 @@
-
-
 import pygame
 
+pygame.init()
 
-class BadCutscene:
+class GoodCutscene:
+    
     def __init__(self) -> None:
         pass
-
+        
     def run(self):
-        pygame.init()
+
         screen = pygame.display.set_mode((1000, 700))
         screenRectangle = screen.get_rect()
 
         pygame.display.set_caption("Intro Cutscene")
         font = pygame.font.Font('ExplorationMode/Font/Enchanted Land.otf', 40)
         text_boxes = [
-            "Oh no! You have failed to defend the castle and the walls have fallen!",
-            "The Tree of Immortality is no longer safe from the enemy. The Kingdom is ruined!",
-            "The End! (Ending 2/3)"
+            "Congratulations! You have successfully defended the castle!",
+            "The Tree of Immortality is now safe for yet another day, and the kingdom may live peacefully.",
+            "The End! (Ending 1/3)"
         ]
 
         text_box_x = 100

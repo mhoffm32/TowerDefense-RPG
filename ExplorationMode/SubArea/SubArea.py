@@ -2,7 +2,6 @@ from ExplorationMode.SubArea.Wall import Wall
 from ExplorationMode.SubArea.Door import Door
 from ExplorationMode.SubArea.Item import Item
 from ExplorationMode.SubArea.Furniture import Furniture
-from ExplorationMode.Player import Player
 from ExplorationMode.SubArea.FriendlyCharacter import FriendlyCharacter, ShopKeeper
 import pygame
 
@@ -267,19 +266,24 @@ class SubArea:
         # populating rooms with secret coins
         self.itemGroup.add(Item(50, 0, 0, 900, 600, 0, coin))
         self.itemGroup.add(Item(50, 0, 0, 900, 150, 1, coin))
+        self.itemGroup.add(Item(50,0,0,100,150,3,coin))
         self.itemGroup.add(Item(50, 0, 0, 200, 150, 4, coin))
         self.itemGroup.add(Item(50, 0, 0, 40, 600, 5, coin))
+
         # populating rooms with secret crystal fragments
-        self.itemGroup.add(Item(0, 1, 0, 900, 600, 1, crystal))
+        self.itemGroup.add(Item(0, 1, 0, 100, 180, 1, crystal))
+        self.itemGroup.add(Item(0,1,0,500,350,2,crystal))
+        self.itemGroup.add(Item(0,1,0,900,600,3,crystal))
         self.itemGroup.add(Item(0, 1, 0, 800, 150, 4, crystal))
         self.itemGroup.add(Item(0, 1, 0, 40, 300, 5, crystal))
-        self.itemGroup.add(Item(0,1,0,900,680,7,crystal))
+        self.itemGroup.add(Item(0,1,0,900,600,7,crystal))
+        self.itemGroup.add(Item(0,1,0,500,440,7,crystal))
 
     def generateNPCs(self):
         # messenger npc in main area
         npcText = ["Hello your Majesty! I am the castle's new messenger. I must tell you something. You know of The Tree of Immortality, ", " correct? Legend states that long ago there was the ability to destroy it. The power was stored within a powerful crystal that",
                    "was said to be shattered many centuries ago. However I believe the fragments still exist and when put back together, will", " once again have the power to destroy The Tree! Here, you can have my crystal fragment. I found it a while ago.",  "Maybe you can rebuild the crystal. It may finally bring peace to this world. Although I hope you never need to use it."]
-        self.npcGroup.add(FriendlyCharacter(100, 550, self.screen, npcText, self.player, 0, 1, 5, 0, 'Images/npc/npc1.png'))
+        self.npcGroup.add(FriendlyCharacter(100, 550, self.screen, npcText, self.player, 0, 1, 0, 0, 'Images/npc/npc1.png'))
 
         # shopkeeper npc
         shopkeeperText = ["Hello your Highness. Please purchase an upgrade for the tower defense here in this shop!",
@@ -306,3 +310,11 @@ class SubArea:
         # librarian guard
         libraryGuardText = ["Welcome to the Library, your Majesty. Feel free to look around."]
         self.npcGroup.add(FriendlyCharacter(700, 400, self.screen, libraryGuardText, self.player, 0, 0, 0, 5, 'Images/npc/castle_guard1.png'))
+
+        # Tree Guard
+        treeGuardText = ["Hello your Majesty. Isn't The Tree of Immortality just beautiful?","We must protect it at all costs.","Watch out for the Witch just past The Tree. She is untrustworthy."]
+        self.npcGroup.add(FriendlyCharacter(300,400,self.screen,treeGuardText,self.player,0,0,0,7,'Images/npc/castle_guard2.png'))
+
+        # Witch
+        witchText = ["Hi there...","Legend has it, if you have 8 crystal fragments and you interact with The Tree, something may occur...","Ignore that guard over there. I promise I have no ill intentions!"]
+        self.npcGroup.add(FriendlyCharacter(900,150,self.screen,witchText,self.player,0,0,0,7,"Images/npc/witch.png"))
