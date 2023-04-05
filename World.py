@@ -83,7 +83,7 @@ while(running):
         if progressBar.attackMode:
             print("Entering TD Mode")
             gameMode = 'tdMode'
-            tdController.generateDefenders(random.randint(1,3), random.randint(1,2), random.randint(1,4), random.randint(10,15))
+            tdController.generateDefenders(random.randint(1,2), random.randint(1,2), random.randint(1,2), random.randint(10,15))
             tdController.generateWave()
 
         pygame.display.flip()
