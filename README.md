@@ -10,7 +10,8 @@
 
 <img width="880" alt="Screenshot 2024-01-17 at 3 11 10 PM" src="https://github.com/mhoffm32/TowerDefense-RPG/assets/113637769/a31bb2bd-d6e6-4623-9d95-734bdf75abb7">
 
-<img width="879" alt="Screenshot 2024-01-17 at 3 06 30 PM" src="https://github.com/mhoffm32/TowerDefense-RPG/assets/113637769/f8a40e79-bce6-46c6-a23e-19dfdc3acfa6">
+<img width="887" alt="Screenshot 2024-01-17 at 3 14 04 PM" src="https://github.com/mhoffm32/TowerDefense-RPG/assets/113637769/82a1b2a7-0fef-4e98-ad28-026823e04586">
+
 
 
 
