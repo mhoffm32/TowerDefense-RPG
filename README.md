@@ -1,6 +1,8 @@
-# Castle Exploration RPG
+# The Immortal Garden
 
-The Immortal Garden
+- A medieval-themed castle exploration RPG
+- Players can customize their character, collect coins and gems to power up up weapons, buy pet dragons, interact with NPCs while exploring the castle
+- Power up your castles defenses to protect the garden of immortality and win the game!
 
 <img width="889" alt="Screenshot 2024-01-17 at 3 13 05 PM" src="https://github.com/mhoffm32/TowerDefense-RPG/assets/113637769/161d487e-a34b-4c98-81df-bf3ad6ee0546">
 
