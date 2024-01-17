@@ -1,3 +1,5 @@
-# SE2250GroupProject
+# Castle Exploration RPG
 
-This our RPG project for SE 2250. It is called The Immortal Garden.
+The Immortal Garden
+
+
