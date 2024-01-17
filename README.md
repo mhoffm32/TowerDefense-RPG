@@ -1,6 +1,6 @@
 # The Immortal Garden
 
-- A medieval-themed castle exploration RPG
+- A medieval-themed castle exploration RPG created using Pygame
 - Players can customize their character, collect coins and gems to power up up weapons, buy pet dragons, interact with NPCs while exploring the castle
 - Power up your castles defenses to protect the garden of immortality and win the game!
 
